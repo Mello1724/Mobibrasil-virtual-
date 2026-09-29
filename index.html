@@ -779,7 +779,65 @@ window.fecharEscala = function() {
 // ADICIONAR MOTORISTA
 window.adicionarMotoristaEscala = function() {
 
-  const lista =
+  const lista = document.getElementById("listaEscala");
+
+  if (!lista) return;
+
+  const numero = lista.children.length + 1;
+
+  const linha = document.createElement("div");
+
+  linha.style.background = "white";
+  linha.style.padding = "15px";
+  linha.style.borderRadius = "12px";
+  linha.style.marginBottom = "12px";
+  linha.style.border = "1px solid #eee";
+
+  linha.innerHTML = `
+    <b>Motorista ${String(numero).padStart(2,"0")}</b>
+
+    <div style="
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+      gap:10px;
+      margin-top:10px;
+    ">
+
+      <select style="padding:11px;border-radius:8px;border:1px solid #ddd;">
+        <option>Selecionar linha</option>
+        <option>1909 - TI Abreu e Lima</option>
+        <option>1946 - TI Igarassu</option>
+        <option>1062 - TI Abreu e Lima</option>
+        <option>1076 - TI Pelópidas</option>
+      </select>
+
+      <select style="padding:11px;border-radius:8px;border:1px solid #ddd;">
+        <option>Selecionar veículo</option>
+        <option>1309 - Apache VIP V</option>
+        <option>1470 - Mascarello</option>
+        <option>1933 - Apache VIP V</option>
+        <option>1807 - Torino S</option>
+      </select>
+
+      <input type="time"
+        style="padding:11px;border-radius:8px;border:1px solid #ddd;">
+
+      <input type="text"
+        placeholder="OSM"
+        style="padding:11px;border-radius:8px;border:1px solid #ddd;">
+
+    </div>
+  `;
+
+  lista.appendChild(linha);
+};
+
+
+// SALVAR ESCALA
+window.salvarEscala = function() {
+
+  alert("Escala preparada para ser salva no Firebase.");
+};
   </script>
 
 </body>
