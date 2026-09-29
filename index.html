@@ -391,6 +391,20 @@ const firebaseConfig = {
           senha
         );
 
+        const usuario = auth.currentUser;
+
+if (usuario) {
+    localStorage.setItem("usuarioUid", usuario.uid);
+    localStorage.setItem("usuarioEmail", usuario.email);
+
+    // Administrador Geral
+    if (usuario.email === "matheusaehenrique@gmail.com")  {
+        localStorage.setItem("tipoUsuario", "admin");
+    } else {
+        localStorage.setItem("tipoUsuario", "funcionario");
+    }
+}
+
       } catch (error) {
 
         console.error(error);
