@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>MobiBrasil PE Virtual</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f4f5fb;
+      color: #202124;
+      min-height: 100vh;
+    }
+
+    .topo {
+      background: linear-gradient(135deg, #6d20d9, #315be8);
+      color: white;
+      padding: 25px 20px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,.15);
+    }
+
+    .logo {
+      width: 60px;
+      height: 60px;
+      margin: auto;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: white;
+      color: #6324d6;
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    .topo h1 {
+      margin-top: 12px;
+      font-size: 22px;
+    }
+
+    .topo p {
+      margin-top: 5px;
+      opacity: .9;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 900px;
+      margin: 30px auto;
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 25px;
+      box-shadow: 0 5px 20px rgba(0,0,0,.08);
+      margin-bottom: 20px;
+    }
+
+    .login {
+      max-width: 500px;
+      margin: 40px auto;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #4f20b7;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 7px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #6d20d9;
+    }
+
+    button {
+      border: none;
+      border-radius: 12px;
+      padding: 14px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn-principal {
+      width: 100%;
+      margin-top: 22px;
+      background: linear-gradient(135deg, #7022df, #345de9);
+      color: white;
+    }
+
+    .btn-sair {
+      background: #eee;
+      color: #333;
+      margin-top: 15px;
+    }
+
+    .erro {
+      margin-top: 15px;
+      padding: 12px;
+      background: #ffe8e8;
+      color: #b3261e;
+      border-radius: 10px;
+      display: none;
+    }
+
+    .sucesso {
+      margin-top: 15px;
+      padding: 12px;
+      background: #e8f7ed;
+      color: #18743b;
+      border-radius: 10px;
+      display: none;
+    }
+
+    .dashboard {
+      display: none;
+    }
+
+    .boas-vindas {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .subtitulo {
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+    }
+
+    .menu-card {
+      background: white;
+      padding: 25px 15px;
+      border-radius: 18px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,.07);
+    }
+
+    .icone {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .menu-card h3 {
+      margin-bottom: 5px;
+      color: #4f20b7;
+    }
+
+    .menu-card p {
+      color: #777;
+      font-size: 14px;
+    }
+
+    .status {
+      display: inline-block;
+      padding: 6px 10px;
+      background: #e7f7ed;
+      color: #18743b;
+      border-radius: 20px;
+      font-size: 13px;
+      margin-top: 10px;
+    }
+
+    .rodape {
+      text-align: center;
+      color: #888;
+      padding: 30px 10px;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="topo">
+    <div class="logo">MB</div>
+    <h1>MOBIBRASIL PE VIRTUAL</h1>
+    <p>Portal Operacional</p>
+  </header>
+
+  <!-- LOGIN -->
+  <main id="areaLogin" class="container">
+
+    <div class="card login">
+
+      <h2>Entrar</h2>
+
+      <p style="color:#666;">
+        Use seu e-mail e senha cadastrados no Firebase.
+      </p>
+
+      <label for="email">Login / E-mail</label>
+      <input
+        id="email"
+        type="email"
+        placeholder="seuemail@gmail.com"
+        autocomplete="email"
+      >
+
+      <label for="senha">Senha</label>
+      <input
+        id="senha"
+        type="password"
+        placeholder="Digite sua senha"
+        autocomplete="current-password"
+      >
+
+      <button class="btn-principal" onclick="entrar()">
+        Entrar
+      </button>
+
+      <div id="erro" class="erro"></div>
+
+    </div>
+
+  </main>
+
+
+  <!-- DASHBOARD -->
+  <main id="areaDashboard" class="container dashboard">
+
+    <div class="card">
+
+      <div class="boas-vindas">
+        Olá, <span id="nomeUsuario">Usuário</span>!
+      </div>
+
+      <div class="subtitulo">
+        Bem-vindo ao Portal Operacional MobiBrasil PE Virtual.
+      </div>
+
+      <span class="status">
+        ● Sistema conectado
+      </span>
+
+      <br>
+
+      <button class="btn-sair" onclick="sair()">
+        Sair
+      </button>
+
+    </div>
+
+
+    <div class="menu">
+
+      <div class="menu-card">
+        <div class="icone">📋</div>
+        <h3>Minha Escala</h3>
+        <p>Consulte sua escala de trabalho.</p>
+      </div>
+
+      <div class="menu-card">
+        <div class="icone">🚌</div>
+        <h3>Veículos</h3>
+        <p>Consulte os veículos cadastrados.</p>
+      </div>
+
+      <div class="menu-card">
+        <div class="icone">🛣️</div>
+        <h3>Linhas</h3>
+        <p>Consulte as linhas da operação.</p>
+      </div>
+
+      <div class="menu-card">
+        <div class="icone">🔧</div>
+        <h3>Vistoria</h3>
+        <p>Registre a vistoria diária.</p>
+      </div>
+
+      <div class="menu-card">
+        <div class="icone">📄</div>
+        <h3>OSM</h3>
+        <p>Consulte e registre ordens de serviço.</p>
+      </div>
+
+      <div class="menu-card">
+        <div class="icone">🔔</div>
+        <h3>Avisos</h3>
+        <p>Veja os comunicados da operação.</p>
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <footer class="rodape">
+    MobiBrasil PE Virtual © 2026
+  </footer>
+
+
+  <!-- FIREBASE -->
+  <script type="module">
+
+    import { initializeApp }
+      from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
+    import {
+      getAuth,
+      signInWithEmailAndPassword,
+      onAuthStateChanged,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
+
+    /*
+      ==========================================
+      CONFIGURAÇÃO DO FIREBASE
+      ==========================================
+
+      VAMOS PREENCHER ESTA PARTE DEPOIS
+      COM OS DADOS DO PROJETO
+      "MobiBrasil PE Virtual".
+    */
+
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyDEoZcZZ5ZQzDJzwwD_Z-HJ7rWZ3oINErM",
+  authDomain: "mobibrasil-pe-virtual.firebaseapp.com",
+  projectId: "mobibrasil-pe-virtual",
+  storageBucket: "mobibrasil-pe-virtual.firebasestorage.app",
+  messagingSenderId: "20078213852",
+  appId: "1:20078213852:web:a99ecdab91221a7cfa1219",
+  measurementId: "G-M0EBV1TZWQ"
+};
+
+
+    const app = initializeApp(firebaseConfig);
+
+    const auth = getAuth(app);
+
+
+    window.entrar = async function() {
+
+      const email =
+        document.getElementById("email").value.trim();
+
+      const senha =
+        document.getElementById("senha").value;
+
+      const erro =
+        document.getElementById("erro");
+
+      erro.style.display = "none";
+
+      if (!email || !senha) {
+
+        erro.textContent =
+          "Preencha o e-mail e a senha.";
+
+        erro.style.display = "block";
+
+        return;
+      }
+
+      try {
+
+        await signInWithEmailAndPassword(
+          auth,
+          email,
+          senha
+        );
+
+      } catch (error) {
+
+        console.error(error);
+
+        erro.textContent =
+          "Login ou senha incorretos. Verifique os dados.";
+
+        erro.style.display = "block";
+      }
+    };
+
+
+    window.sair = async function() {
+
+      await signOut(auth);
+
+    };
+
+
+    onAuthStateChanged(auth, (user) => {
+
+      const login =
+        document.getElementById("areaLogin");
+
+      const dashboard =
+        document.getElementById("areaDashboard");
+
+      if (user) {
+
+        login.style.display = "none";
+
+        dashboard.style.display = "block";
+
+        document.getElementById("nomeUsuario").textContent =
+          user.email;
+
+      } else {
+
+        login.style.display = "block";
+
+        dashboard.style.display = "none";
+
+      }
+
+    });
+
+  </script>
+
+</body>
+</html>
