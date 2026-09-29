@@ -457,20 +457,21 @@ if (!painelAdmin) {
       Área exclusiva dos administradores do MobiBrasil PE Virtual.
     </p>
 
-    <button onclick="alert('Área de edição da escala será configurada aqui.')"
-      style="
-        width:100%;
-        padding:14px;
-        margin-top:10px;
-        border:0;
-        border-radius:10px;
-        background:#5b2cff;
-        color:white;
-        font-size:16px;
-        font-weight:bold;
-      ">
-      📋 Alterar Escala
-    </button>
+    <button onclick="abrirEscala()"
+  style="
+    width:100%;
+    padding:14px;
+    margin-top:10px;
+    border:0;
+    border-radius:10px;
+    background:#5b2cff;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+  ">
+  📋 Alterar Escala
+</button>
 
     <button onclick="alert('Gerenciamento de funcionários será configurado aqui.')"
       style="
@@ -523,7 +524,262 @@ if (localStorage.getItem("tipoUsuario") === "admin") {
       }
 
     });
+// ===============================
+// TELA DE ALTERAR ESCALA
+// ===============================
+window.abrirEscala = function() {
 
+  // Impede abrir duas telas
+  if (document.getElementById("modalEscala")) return;
+
+  const modal = document.createElement("div");
+  modal.id = "modalEscala";
+
+  modal.style.position = "fixed";
+  modal.style.top = "0";
+  modal.style.left = "0";
+  modal.style.width = "100%";
+  modal.style.height = "100%";
+  modal.style.background = "rgba(0,0,0,0.65)";
+  modal.style.zIndex = "9999";
+  modal.style.overflowY = "auto";
+  modal.style.padding = "20px";
+  modal.style.boxSizing = "border-box";
+
+  modal.innerHTML = `
+    <div style="
+      max-width:1100px;
+      margin:20px auto;
+      background:white;
+      border-radius:20px;
+      overflow:hidden;
+      box-shadow:0 10px 40px rgba(0,0,0,0.3);
+    ">
+
+      <!-- CABEÇALHO -->
+      <div style="
+        background:linear-gradient(135deg,#304ffe,#6331f5);
+        color:white;
+        padding:25px;
+        position:relative;
+      ">
+
+        <button onclick="fecharEscala()" style="
+          position:absolute;
+          right:15px;
+          top:15px;
+          border:0;
+          background:rgba(255,255,255,0.2);
+          color:white;
+          width:40px;
+          height:40px;
+          border-radius:50%;
+          font-size:22px;
+        ">×</button>
+
+        <h1 style="margin:0;font-size:28px;">
+          📋 Alterar Escala
+        </h1>
+
+        <p style="margin:8px 0 0;">
+          Edite e salve a escala operacional da empresa
+        </p>
+
+      </div>
+
+      <!-- INFORMAÇÕES -->
+      <div style="
+        display:grid;
+        grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+        gap:15px;
+        padding:20px;
+      ">
+
+        <div style="
+          padding:18px;
+          background:#f5f3ff;
+          border-radius:15px;
+        ">
+          <b>📅 Data da escala</b>
+          <input type="date"
+            value="${new Date().toISOString().split('T')[0]}"
+            style="
+              width:100%;
+              margin-top:10px;
+              padding:12px;
+              box-sizing:border-box;
+              border:1px solid #ddd;
+              border-radius:10px;
+            ">
+        </div>
+
+        <div style="
+          padding:18px;
+          background:#f5f3ff;
+          border-radius:15px;
+        ">
+          <b>📆 Mês de operação</b>
+          <select style="
+            width:100%;
+            margin-top:10px;
+            padding:12px;
+            border:1px solid #ddd;
+            border-radius:10px;
+          ">
+            <option>Setembro/2026</option>
+            <option>Outubro/2026</option>
+            <option>Novembro/2026</option>
+          </select>
+        </div>
+
+        <div style="
+          padding:18px;
+          background:#f5f3ff;
+          border-radius:15px;
+        ">
+          <b>🕐 Última alteração</b>
+          <p style="margin-bottom:0;color:#555;">
+            Agora — Administrador Geral
+          </p>
+        </div>
+
+      </div>
+
+      <!-- ESCALA -->
+      <div style="padding:0 20px 20px;">
+
+        <div style="
+          background:#f8f9ff;
+          border-radius:15px;
+          padding:20px;
+        ">
+
+          <h2 style="margin-top:0;color:#172554;">
+            🚌 Escala de Motoristas
+          </h2>
+
+          <p style="color:#666;">
+            Selecione o motorista, linha e veículo.
+          </p>
+
+          <button onclick="adicionarMotoristaEscala()" style="
+            background:#6331f5;
+            color:white;
+            border:0;
+            border-radius:10px;
+            padding:13px 18px;
+            font-weight:bold;
+            margin-bottom:15px;
+          ">
+            ➕ Adicionar Motorista
+          </button>
+
+          <div id="listaEscala">
+
+            <div style="
+              background:white;
+              padding:15px;
+              border-radius:12px;
+              margin-bottom:12px;
+              border:1px solid #eee;
+            ">
+
+              <b>Motorista 01</b>
+
+              <div style="
+                display:grid;
+                grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+                gap:10px;
+                margin-top:10px;
+              ">
+
+                <select style="padding:11px;border-radius:8px;border:1px solid #ddd;">
+                  <option>Selecionar linha</option>
+                  <option>1909 - TI Abreu e Lima</option>
+                  <option>1946 - TI Igarassu</option>
+                  <option>1062 - TI Abreu e Lima</option>
+                  <option>1076 - TI Pelópidas</option>
+                </select>
+
+                <select style="padding:11px;border-radius:8px;border:1px solid #ddd;">
+                  <option>Selecionar veículo</option>
+                  <option>1309 - Apache VIP V</option>
+                  <option>1470 - Mascarello</option>
+                  <option>1933 - Apache VIP V</option>
+                  <option>1807 - Torino S</option>
+                </select>
+
+                <input type="time"
+                  style="padding:11px;border-radius:8px;border:1px solid #ddd;">
+
+                <input type="text"
+                  placeholder="OSM"
+                  style="padding:11px;border-radius:8px;border:1px solid #ddd;">
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- RODAPÉ -->
+      <div style="
+        padding:20px;
+        background:#f5f7ff;
+        display:flex;
+        gap:10px;
+        flex-wrap:wrap;
+        justify-content:flex-end;
+      ">
+
+        <button onclick="fecharEscala()" style="
+          padding:13px 20px;
+          border:1px solid #ccc;
+          background:white;
+          border-radius:10px;
+          font-weight:bold;
+        ">
+          Cancelar
+        </button>
+
+        <button onclick="salvarEscala()" style="
+          padding:13px 20px;
+          border:0;
+          background:#198754;
+          color:white;
+          border-radius:10px;
+          font-weight:bold;
+        ">
+          💾 Salvar Escala
+        </button>
+
+      </div>
+
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+};
+
+
+// FECHAR
+window.fecharEscala = function() {
+  const modal = document.getElementById("modalEscala");
+
+  if (modal) {
+    modal.remove();
+  }
+};
+
+
+// ADICIONAR MOTORISTA
+window.adicionarMotoristaEscala = function() {
+
+  const lista =
   </script>
 
 </body>
