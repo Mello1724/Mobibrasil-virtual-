@@ -437,7 +437,80 @@ if (usuario) {
         login.style.display = "none";
 
         dashboard.style.display = "block";
+// PAINEL DO ADMINISTRADOR
+let painelAdmin = document.getElementById("painelAdmin");
 
+if (!painelAdmin) {
+  painelAdmin = document.createElement("div");
+  painelAdmin.id = "painelAdmin";
+
+  painelAdmin.style.marginTop = "20px";
+  painelAdmin.style.padding = "20px";
+  painelAdmin.style.borderRadius = "15px";
+  painelAdmin.style.background = "#ffffff";
+  painelAdmin.style.boxShadow = "0 4px 15px rgba(0,0,0,0.15)";
+
+  painelAdmin.innerHTML = `
+    <h2 style="margin-top:0;">👑 Administração</h2>
+
+    <p style="color:#555;">
+      Área exclusiva dos administradores do MobiBrasil PE Virtual.
+    </p>
+
+    <button onclick="alert('Área de edição da escala será configurada aqui.')"
+      style="
+        width:100%;
+        padding:14px;
+        margin-top:10px;
+        border:0;
+        border-radius:10px;
+        background:#5b2cff;
+        color:white;
+        font-size:16px;
+        font-weight:bold;
+      ">
+      📋 Alterar Escala
+    </button>
+
+    <button onclick="alert('Gerenciamento de funcionários será configurado aqui.')"
+      style="
+        width:100%;
+        padding:14px;
+        margin-top:10px;
+        border:0;
+        border-radius:10px;
+        background:#1677ff;
+        color:white;
+        font-size:16px;
+        font-weight:bold;
+      ">
+      👥 Funcionários
+    </button>
+
+    <button onclick="alert('Gerenciamento de veículos será configurado aqui.')"
+      style="
+        width:100%;
+        padding:14px;
+        margin-top:10px;
+        border:0;
+        border-radius:10px;
+        background:#198754;
+        color:white;
+        font-size:16px;
+        font-weight:bold;
+      ">
+      🚌 Veículos
+    </button>
+  `;
+
+  dashboard.appendChild(painelAdmin);
+}
+
+if (localStorage.getItem("tipoUsuario") === "admin") {
+  painelAdmin.style.display = "block";
+} else {
+  painelAdmin.style.display = "none";
+    }
         document.getElementById("nomeUsuario").textContent =
           user.email;
 
