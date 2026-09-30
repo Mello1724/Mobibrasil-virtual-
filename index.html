@@ -2,47 +2,336 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
 <title>MobiBrasil PE Virtual</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}body{background:#f4f5fb;color:#202124;min-height:100vh}.topo{background:linear-gradient(135deg,#6d20d9,#315be8);color:#fff;padding:25px 20px;text-align:center}.logo{width:60px;height:60px;margin:auto;border-radius:18px;display:flex;align-items:center;justify-content:center;background:#fff;color:#6324d6;font-size:25px;font-weight:bold}.topo h1{margin-top:12px;font-size:22px}.topo p{margin-top:5px;opacity:.9}.container{width:92%;max-width:1100px;margin:30px auto}.card,.admin-panel{background:#fff;border-radius:20px;padding:25px;box-shadow:0 5px 20px #00000014;margin-bottom:20px}.login{max-width:500px;margin:40px auto}h2{margin-bottom:15px;color:#4f20b7}label{display:block;margin:15px 0 7px;font-weight:bold}input,select{width:100%;padding:13px;border:1px solid #ddd;border-radius:12px;font-size:16px;background:#fff}button{border:0;border-radius:12px;padding:13px 18px;font-size:16px;font-weight:bold;cursor:pointer}.btn-principal{width:100%;margin-top:22px;background:linear-gradient(135deg,#7022df,#345de9);color:#fff}.btn-sair{background:#eee;color:#333;margin-top:15px}.erro{margin-top:15px;padding:12px;background:#ffe8e8;color:#b3261e;border-radius:10px;display:none}.dashboard{display:none}.boas-vindas{font-size:20px;font-weight:bold}.subtitulo{color:#666;margin:8px 0 15px}.status{display:inline-block;padding:6px 10px;background:#e7f7ed;color:#18743b;border-radius:20px;font-size:13px}.menu{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px}.menu-card{background:#fff;padding:25px 15px;border-radius:18px;text-align:center;box-shadow:0 4px 15px #00000012}.icone{font-size:32px;margin-bottom:10px}.menu-card h3{margin-bottom:5px;color:#4f20b7}.menu-card p{color:#777;font-size:14px}.admin-panel{margin-top:20px}.admin-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-top:15px}.admin-btn{width:100%;color:#fff}.purple{background:#5b2cff}.blue{background:#1677ff}.green{background:#198754}.orange{background:#e67e22}.rodape{text-align:center;color:#888;padding:30px 10px;font-size:13px}
-#modalEscala{position:fixed;inset:0;background:#000a;z-index:99999;overflow-y:auto;padding:15px}.modal-box{max-width:1100px;margin:20px auto;background:#fff;border-radius:20px;overflow:hidden}.modal-head{background:linear-gradient(135deg,#304ffe,#6331f5);color:#fff;padding:25px;position:relative}.modal-head h1{font-size:28px}.modal-head p{margin-top:8px}.close{position:absolute;right:15px;top:15px;background:#ffffff33;color:#fff;width:42px;height:42px;border-radius:50%;font-size:24px;padding:0}.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px;padding:20px}.info-card,.horario-box,.section-box{padding:20px;background:#f5f3ff;border-radius:16px}.info-card input,.info-card select{margin-top:10px}.section{padding:0 20px 20px}.section-box{background:#f8f9ff}.section-box h2{color:#172554}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:15px 0}.motorista{background:#fff;padding:15px;border-radius:12px;margin-bottom:12px;border:1px solid #eee}.motorista-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.motorista-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px}.motorista-grid input,.motorista-grid select{padding:10px;border-radius:9px}.veiculo-info{grid-column:1/-1;background:#eef5ff;color:#1d4ed8;padding:10px;border-radius:10px;font-size:13px}.horario-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}.horario-lista{margin-top:12px}.horario-item{background:#fff;padding:12px;border-radius:10px;margin-top:8px;display:flex;justify-content:space-between;gap:8px}.last{margin:0 20px 20px;padding:15px;background:#eef5ff;border-radius:12px;color:#334155}.footer-modal{padding:20px;background:#f5f7ff;display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}.save{background:#198754;color:#fff}.cancel{background:#fff;border:1px solid #ccc}.remove{background:#ffe8e8;color:#b3261e;padding:8px 10px;font-size:13px}@media(max-width:600px){.container{width:94%}.section,.info-grid{padding-left:12px;padding-right:12px}}
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+body{background:#f3f5fb;color:#202124;min-height:100vh}
+button,input,select{font:inherit}
+button{cursor:pointer}
+.topo{background:linear-gradient(135deg,#6820df,#315be8);color:#fff;padding:25px 20px;text-align:center;box-shadow:0 4px 15px rgba(0,0,0,.15)}
+.logo{width:60px;height:60px;margin:auto;border-radius:18px;display:flex;align-items:center;justify-content:center;background:#fff;color:#6324d6;font-size:25px;font-weight:bold}
+.topo h1{margin-top:12px;font-size:22px}.topo p{margin-top:5px;opacity:.9}
+.container{width:92%;max-width:1100px;margin:30px auto}
+.card{background:#fff;border-radius:20px;padding:25px;box-shadow:0 5px 20px rgba(0,0,0,.08);margin-bottom:20px}
+.login{max-width:500px;margin:40px auto}
+h2{margin-bottom:18px;color:#4f20b7}
+label{display:block;margin:15px 0 7px;font-weight:bold}
+input,select{width:100%;padding:13px;border:1px solid #ddd;border-radius:11px;background:#fff;outline:none}
+input:focus,select:focus{border-color:#6331f5}
+button{border:0;border-radius:11px;padding:13px 18px;font-weight:bold}
+.btn-principal{width:100%;margin-top:22px;background:linear-gradient(135deg,#7022df,#345de9);color:#fff}
+.btn-sair{background:#eee;color:#333;margin-top:15px}
+.erro{margin-top:15px;padding:12px;background:#ffe8e8;color:#b3261e;border-radius:10px;display:none}
+.dashboard{display:none}.boas-vindas{font-size:20px;font-weight:bold;margin-bottom:8px}.subtitulo{color:#666;margin-bottom:18px}
+.status{display:inline-block;padding:6px 10px;background:#e7f7ed;color:#18743b;border-radius:20px;font-size:13px}
+.menu{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px}
+.menu-card{background:#fff;padding:25px 15px;border-radius:18px;text-align:center;box-shadow:0 4px 15px rgba(0,0,0,.07)}
+.icone{font-size:32px;margin-bottom:10px}.menu-card h3{margin-bottom:5px;color:#4f20b7}.menu-card p{color:#777;font-size:14px}
+.rodape{text-align:center;color:#888;padding:30px 10px;font-size:13px}
+#painelAdmin{display:none}.admin-title{color:#172554;margin-bottom:6px}
+.admin-btn{width:100%;margin-top:10px;color:#fff}.purple{background:#6331f5}.blue{background:#1677ff}.green{background:#198754}
+
+#modalEscala{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:99999;overflow:auto;padding:10px}
+.escala-box{max-width:1200px;margin:10px auto;background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.3)}
+.escala-head{background:linear-gradient(135deg,#304ffe,#6331f5);color:#fff;padding:22px;position:relative}
+.escala-head h1{font-size:30px}.escala-head p{margin-top:7px;font-size:16px}
+.fechar{position:absolute;right:15px;top:15px;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.2);color:#fff;font-size:25px;padding:0}
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:18px}
+.info-card{padding:17px;background:#f5f3ff;border-radius:15px}
+.info-card b{display:block;color:#172554;margin-bottom:9px}.info-card small{color:#666}
+.escala-area{padding:0 18px 18px}.escala-inner{background:#f8f9ff;border-radius:15px;padding:18px}
+.escala-inner h2{color:#172554;margin-bottom:5px}.escala-inner>p{color:#666;margin-bottom:15px}
+.acoes-top{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:15px}.acoes-top button{color:#fff;flex:1;min-width:170px}
+.tabela-scroll{overflow-x:auto;border-radius:12px}
+.tabela{width:100%;min-width:1080px;border-collapse:collapse;background:#fff}
+.tabela th{background:#eef0f8;color:#172554;padding:12px 8px;text-align:left;font-size:13px;white-space:nowrap}
+.tabela td{padding:8px 7px;border-top:1px solid #eee;vertical-align:middle}
+.tabela input,.tabela select{padding:9px;border-radius:9px;font-size:13px}
+.horario{min-width:195px;background:#f4f0ff;border-radius:10px;padding:9px}
+.horarios{display:flex;justify-content:space-between;gap:7px}.horarios strong{display:block;color:#172554;font-size:14px}.horarios small{color:#555}
+.intervalo{margin-top:7px;background:#d9f7e3;color:#168044;border-radius:8px;padding:4px;font-size:11px;font-weight:bold;text-align:center}
+.barra{height:7px;margin-top:8px;border-radius:10px;background:linear-gradient(90deg,#4285f4,#6331f5)}
+.status-cell{display:inline-block;padding:8px 10px;border-radius:10px;font-size:12px;font-weight:bold;white-space:nowrap}
+.ativo{background:#d9f7e3;color:#168044}.folga{background:#fff0bf;color:#8b6800}
+.btn-delete{background:#ffe0e0;color:#c62828;padding:9px 11px}
+.aviso{margin-top:18px;padding:15px;background:#fff3df;border:1px solid #ffc76d;border-radius:14px;color:#8a4500}
+.resumo{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:15px}
+.resumo-card{padding:18px;border-radius:18px;background:#eef5ff}.historico{padding:18px;border-radius:18px;background:#f4efff}
+.resumo-card h3,.historico h3{color:#172554;margin-bottom:12px}.numeros{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.numero{background:#fff;border-radius:12px;text-align:center;padding:12px}.numero strong{display:block;font-size:25px;color:#1645c4}.numero span{font-size:11px;color:#555}
+.hist-item{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid rgba(80,50,150,.12);font-size:12px}.hist-item:last-child{border-bottom:0}.hist-item b{color:#25156e}
+.rodape-modal{padding:18px;background:#f5f7ff;display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+.btn-cancelar{background:#fff;border:1px solid #ccc}.btn-salvar{background:#198754;color:#fff;min-width:210px}
+.loading{opacity:.65;pointer-events:none}.sem-dados{padding:30px;text-align:center;color:#777}
+.toast{position:fixed;right:18px;bottom:18px;z-index:100000;max-width:360px;padding:14px 17px;border-radius:12px;color:#fff;background:#222;box-shadow:0 8px 25px rgba(0,0,0,.25);display:none}
+@media(max-width:700px){
+ .info-grid{grid-template-columns:1fr}.resumo{grid-template-columns:1fr}.numeros{grid-template-columns:repeat(2,1fr)}
+ .escala-head h1{font-size:24px}.escala-head p{font-size:14px}
+ #modalEscala{padding:0}.escala-box{margin:0;border-radius:0;min-height:100vh}
+}
 </style>
 </head>
 <body>
-<header class="topo"><div class="logo">MB</div><h1>MOBIBRASIL PE VIRTUAL</h1><p>Portal Operacional</p></header>
-<main id="areaLogin" class="container"><div class="card login"><h2>Entrar</h2><p style="color:#666">Use seu e-mail e senha cadastrados no Firebase.</p><label>E-mail</label><input id="email" type="email" placeholder="seuemail@gmail.com"><label>Senha</label><input id="senha" type="password" placeholder="Digite sua senha"><button id="btnEntrar" class="btn-principal" onclick="entrar()">Entrar</button><div id="erro" class="erro"></div></div></main>
-<main id="areaDashboard" class="container dashboard"><div class="card"><div class="boas-vindas">Olá, <span id="nomeUsuario">Usuário</span>!</div><div class="subtitulo">Bem-vindo ao Portal Operacional MobiBrasil PE Virtual.</div><span class="status">● Sistema conectado</span><br><button class="btn-sair" onclick="sair()">Sair</button></div><div class="menu"><div class="menu-card"><div class="icone">📋</div><h3>Minha Escala</h3><p>Consulte sua escala.</p></div><div class="menu-card"><div class="icone">🚌</div><h3>Veículos</h3><p>Consulte os veículos.</p></div><div class="menu-card"><div class="icone">🛣️</div><h3>Linhas</h3><p>Consulte as linhas.</p></div><div class="menu-card"><div class="icone">🔧</div><h3>Vistoria</h3><p>Registre a vistoria.</p></div><div class="menu-card"><div class="icone">📄</div><h3>OSM</h3><p>Ordens de serviço.</p></div><div class="menu-card"><div class="icone">🔔</div><h3>Avisos</h3><p>Comunicados da operação.</p></div></div><div id="painelAdmin" class="admin-panel" style="display:none"><h2>👑 Administração</h2><p style="color:#555">Área exclusiva dos administradores.</p><div class="admin-grid"><button class="admin-btn purple" onclick="abrirEscala()">📋 Alterar Escala</button><button class="admin-btn blue" onclick="abrirEscala()">👥 Funcionários</button><button class="admin-btn green" onclick="alert('Cadastro de veículos será integrado ao Firestore.')">🚌 Veículos</button><button class="admin-btn orange" onclick="resumoEscala()">🕘 Resumo da Escala</button></div></div></main>
+
+<header class="topo">
+  <div class="logo">MB</div>
+  <h1>MOBIBRASIL PE VIRTUAL</h1>
+  <p>Portal Operacional</p>
+</header>
+
+<main id="areaLogin" class="container">
+  <div class="card login">
+    <h2>Entrar</h2>
+    <p style="color:#666">Use seu e-mail e senha cadastrados no Firebase.</p>
+    <label for="email">Login / E-mail</label>
+    <input id="email" type="email" placeholder="seuemail@gmail.com" autocomplete="email">
+    <label for="senha">Senha</label>
+    <input id="senha" type="password" placeholder="Digite sua senha" autocomplete="current-password">
+    <button id="btnEntrar" class="btn-principal" onclick="entrar()">Entrar</button>
+    <div id="erro" class="erro"></div>
+  </div>
+</main>
+
+<main id="areaDashboard" class="container dashboard">
+  <div class="card">
+    <div class="boas-vindas">Olá, <span id="nomeUsuario">Usuário</span>!</div>
+    <div class="subtitulo">Bem-vindo ao Portal Operacional MobiBrasil PE Virtual.</div>
+    <span class="status">● Sistema conectado</span><br>
+    <button class="btn-sair" onclick="sair()">Sair</button>
+  </div>
+
+  <div class="menu">
+    <div class="menu-card"><div class="icone">📋</div><h3>Minha Escala</h3><p>Consulte sua escala de trabalho.</p></div>
+    <div class="menu-card"><div class="icone">🚌</div><h3>Veículos</h3><p>Consulte os veículos cadastrados.</p></div>
+    <div class="menu-card"><div class="icone">🛣️</div><h3>Linhas</h3><p>Consulte as linhas da operação.</p></div>
+    <div class="menu-card"><div class="icone">🔧</div><h3>Vistoria</h3><p>Registre a vistoria diária.</p></div>
+    <div class="menu-card"><div class="icone">📄</div><h3>OSM</h3><p>Consulte e registre ordens de serviço.</p></div>
+    <div class="menu-card"><div class="icone">🔔</div><h3>Avisos</h3><p>Veja os comunicados da operação.</p></div>
+  </div>
+
+  <div id="painelAdmin" class="card">
+    <h2 class="admin-title">👑 Administração</h2>
+    <p style="color:#555">Área exclusiva dos administradores do MobiBrasil PE Virtual.</p>
+    <button class="admin-btn purple" onclick="abrirEscala()">📋 Alterar Escala</button>
+    <button class="admin-btn blue" onclick="toast('O gerenciamento de funcionários será integrado à escala.')">👥 Funcionários</button>
+    <button class="admin-btn green" onclick="toast('O cadastro de veículos será integrado ao banco de dados.')">🚌 Veículos</button>
+  </div>
+</main>
+
 <footer class="rodape">MobiBrasil PE Virtual © 2026</footer>
+<div id="toast" class="toast"></div>
+
 <script type="module">
-import{initializeApp}from"https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
-import{getAuth,signInWithEmailAndPassword,onAuthStateChanged,signOut}from"https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
-import{getFirestore,doc,getDoc,setDoc,serverTimestamp}from"https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
-const firebaseConfig={apiKey:"AIzaSyDEoZcZZ5ZQzDJzwwD_Z-HJ7rWZ3oINErM",authDomain:"mobibrasil-pe-virtual.firebaseapp.com",projectId:"mobibrasil-pe-virtual",storageBucket:"mobibrasil-pe-virtual.firebasestorage.app",messagingSenderId:"20078213852",appId:"1:20078213852:web:a99ecdab91221a7cfa1219",measurementId:"G-M0EBV1TZWQ"};
-const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app);const ADMINS=["matheusaehenrique@gmail.com"];
-const LINHAS=[['1909','TI Abreu e Lima'],['1937','TI Abreu e Lima / Nova Aurora'],['1946','TI Igarassu'],['1062','TI Abreu e Lima'],['1076','TI Pelópidas'],['1911','Linha 1911'],['1917','Linha 1917']];
-const VEICULOS=[['1309','Apache VIP V','2026','Convencional','Sim'],['1470','Mascarello','2024','Convencional','Sim'],['1933','Apache VIP V','2025','Convencional','Sim'],['1807','Torino S','2026','Convencional','Sim'],['1720','Torino S','2025','Convencional','Sim'],['1937','Mascarello Granvia','2025','3 eixos','Sim']];
-const MOTORISTAS=Array.from({length:30},(_,i)=>`Motorista ${String(i+1).padStart(2,'0')}`);let escala={dataEscala:new Date().toISOString().slice(0,10),mesOperacao:'Setembro/2026',horarios:[],motoristas:[]};
-const admin=()=>auth.currentUser&&ADMINS.includes((auth.currentUser.email||'').toLowerCase());
-const linhas=(sel='')=>'<option value="">Selecionar linha</option>'+LINHAS.map(x=>`<option value="${x[0]}" ${x[0]===sel?'selected':''}>${x[0]} - ${x[1]}</option>`).join('');
-const veiculos=(sel='')=>'<option value="">Selecionar veículo</option>'+VEICULOS.map(x=>`<option value="${x[0]}" ${x[0]===sel?'selected':''}>${x[0]} - ${x[1]}</option>`).join('');
-const motoristas=(sel='')=>'<option value="">Selecionar motorista</option>'+MOTORISTAS.map(x=>`<option value="${x}" ${x===sel?'selected':''}>${x}</option>`).join('');
-function erro(t){const e=document.getElementById('erro');e.textContent=t;e.style.display='block'}
-window.entrar=async()=>{document.getElementById('erro').style.display='none';const email=document.getElementById('email').value.trim(),senha=document.getElementById('senha').value,b=document.getElementById('btnEntrar');if(!email||!senha)return erro('Preencha o e-mail e a senha.');b.disabled=true;b.textContent='Entrando...';try{await signInWithEmailAndPassword(auth,email,senha)}catch(e){console.error(e);erro('Login ou senha incorretos. Verifique os dados.')}finally{b.disabled=false;b.textContent='Entrar'}};
-window.sair=async()=>{await signOut(auth);localStorage.clear()};
-onAuthStateChanged(auth,u=>{const l=document.getElementById('areaLogin'),d=document.getElementById('areaDashboard'),p=document.getElementById('painelAdmin');if(u){l.style.display='none';d.style.display='block';document.getElementById('nomeUsuario').textContent=u.email;p.style.display=admin()?'block':'none';localStorage.setItem('usuarioUid',u.uid);localStorage.setItem('tipoUsuario',admin()?'admin':'funcionario')}else{l.style.display='block';d.style.display='none';p.style.display='none'}});
-function card(n,d={}){const x=document.createElement('div');x.className='motorista';x.innerHTML=`<div class="motorista-top"><b>👤 Motorista ${String(n).padStart(2,'0')}</b><button class="remove" type="button">✕ Remover</button></div><div class="motorista-grid"><select class="m">${motoristas(d.motorista)}</select><select class="l">${linhas(d.linha)}</select><select class="v">${veiculos(d.veiculo)}</select><input class="h" type="time" value="${d.horario||''}"><input class="o" placeholder="OSM" value="${d.osm||''}"><input class="obs" placeholder="Observação" value="${d.observacao||''}"><div class="veiculo-info">Selecione um veículo para ver modelo, ano, tipo e ar-condicionado.</div></div>`;x.querySelector('.remove').onclick=()=>x.remove();x.querySelector('.v').onchange=e=>info(e.target);if(d.veiculo)info(x.querySelector('.v'));return x}
-function info(s){const x=VEICULOS.find(v=>v[0]===s.value),i=s.closest('.motorista').querySelector('.veiculo-info');i.innerHTML=x?`<b>🚌 ${x[0]} — ${x[1]}</b> · Ano: ${x[2]} · Tipo: ${x[3]} · Ar-condicionado: ${x[4]}`:'Selecione um veículo para ver modelo, ano, tipo e ar-condicionado.'}
-window.adicionarMotoristaEscala=()=>{const l=document.getElementById('listaEscala');if(l)l.appendChild(card(l.children.length+1))};window.adicionar30Motoristas=()=>{const l=document.getElementById('listaEscala');while(l.children.length<30)adicionarMotoristaEscala()};
-window.abrirEscala=async()=>{if(!admin())return alert('Apenas administradores podem alterar a escala.');await carregar();if(document.getElementById('modalEscala'))return;const m=document.createElement('div');m.id='modalEscala';m.innerHTML=`<div class="modal-box"><div class="modal-head"><button class="close" onclick="fecharEscala()">×</button><h1>📋 Alterar Escala</h1><p>Edite e salve a escala operacional da empresa.</p></div><div class="info-grid"><div class="info-card"><b>📅 Data da escala</b><input id="dataEscala" type="date" value="${escala.dataEscala}"></div><div class="info-card"><b>📆 Mês de operação</b><select id="mesOperacao">${['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'].map(x=>x+'/2026').map(x=>`<option ${x===escala.mesOperacao?'selected':''}>${x}</option>`).join('')}</select></div><div class="info-card"><b>🕐 Última alteração</b><p id="ultima" style="margin-top:10px;color:#555">Carregando...</p></div></div><div class="section"><div class="horario-box"><h2>🕐 Horário da Linha</h2><p>Cadastre o início e encerramento das viagens da linha.</p><div class="horario-grid"><div><label style="margin-top:0">Linha</label><select id="hl">${linhas()}</select></div><div><label style="margin-top:0">🌅 Primeira viagem</label><input id="hp" type="time"></div><div><label style="margin-top:0">🌙 Última viagem</label><input id="hu" type="time"></div></div><button onclick="addHorario()" style="margin-top:12px;background:#6331f5;color:#fff">➕ Adicionar horário</button><div id="horarios" class="horario-lista"></div><div style="margin-top:12px;background:#fff3cd;border:1px solid #ffe08a;padding:14px;border-radius:12px;color:#6b5a00"><b>🌙 Intervalo sem viagens</b><br>Fora do horário operacional da linha, o sistema poderá bloquear o registro de viagens.</div></div></div><div class="section"><div class="section-box"><h2>🚌 Escala de Motoristas</h2><p style="color:#666">Selecione motorista, linha, veículo, horário e OSM.</p><div class="toolbar"><button onclick="adicionarMotoristaEscala()" style="background:#6331f5;color:#fff">➕ Adicionar Motorista</button><button onclick="adicionar30Motoristas()" style="background:#eef0f8;color:#172554">👥 Adicionar 30</button></div><div id="listaEscala"></div></div></div><div class="last">A escala é salva no Firestore em <b>escalas/operacao</b>.</div><div class="footer-modal"><button class="cancel" onclick="fecharEscala()">Cancelar</button><button class="save" id="salvar" onclick="salvarEscala()">💾 Salvar Escala</button></div></div>`;document.body.appendChild(m);const l=document.getElementById('listaEscala');(escala.motoristas.length?escala.motoristas:[{}]).forEach((x,i)=>l.appendChild(card(i+1,x)));renderHorarios();carregarUltima()};
-window.fecharEscala=()=>document.getElementById('modalEscala')?.remove();
-window.addHorario=()=>{const l=document.getElementById('hl').value,p=document.getElementById('hp').value,u=document.getElementById('hu').value;if(!l||!p||!u)return alert('Preencha linha, primeira e última viagem.');if(p>u)return alert('A primeira viagem não pode ser depois da última.');const old=escala.horarios.find(x=>x.linha===l);if(old){old.primeira=p;old.ultima=u}else escala.horarios.push({linha:l,primeira:p,ultima:u});document.getElementById('hl').value='';document.getElementById('hp').value='';document.getElementById('hu').value='';renderHorarios()};
-function renderHorarios(){const e=document.getElementById('horarios');if(!e)return;e.innerHTML=escala.horarios.length?escala.horarios.map((h,i)=>{const l=LINHAS.find(x=>x[0]===h.linha);return `<div class="horario-item"><span><b>${h.linha} - ${l?l[1]:''}</b><br>🌅 ${h.primeira} → 🌙 ${h.ultima}</span><button class="remove" onclick="delHorario(${i})">Excluir</button></div>`}).join(''):'<div style="color:#777">Nenhum horário cadastrado.</div>'}window.delHorario=i=>{escala.horarios.splice(i,1);renderHorarios()};
-async function carregar(){try{const s=await getDoc(doc(db,'escalas','operacao'));if(s.exists()){const d=s.data();escala={dataEscala:d.dataEscala||escala.dataEscala,mesOperacao:d.mesOperacao||escala.mesOperacao,horarios:Array.isArray(d.horarios)?d.horarios:Array.isArray(d.linhasHorario)?d.linhasHorario:[],motoristas:Array.isArray(d.motoristas)?d.motoristas:[]}}}catch(e){console.error(e);alert('Erro ao carregar a escala. Confira as regras do Firestore.')}}
-function coletar(){return [...document.querySelectorAll('.motorista')].map(x=>({motorista:x.querySelector('.m').value,linha:x.querySelector('.l').value,veiculo:x.querySelector('.v').value,horario:x.querySelector('.h').value,osm:x.querySelector('.o').value.trim(),observacao:x.querySelector('.obs').value.trim()}))}
-window.salvarEscala=async()=>{if(!admin())return alert('Apenas administradores podem salvar.');const b=document.getElementById('salvar');b.disabled=true;b.textContent='💾 Salvando...';try{const dados={dataEscala:document.getElementById('dataEscala').value,mesOperacao:document.getElementById('mesOperacao').value,horarios:escala.horarios,motoristas:coletar(),alteradoPor:auth.currentUser.email,alteradoEm:serverTimestamp()};await setDoc(doc(db,'escalas','operacao'),dados,{merge:true});alert('✅ Escala salva com sucesso no Firebase!');fecharEscala()}catch(e){console.error(e);alert('❌ Erro ao salvar. Confira as regras do Firestore.')}finally{b.disabled=false;b.textContent='💾 Salvar Escala'}};
-async function carregarUltima(){const e=document.getElementById('ultima');try{const s=await getDoc(doc(db,'escalas','operacao'));if(!s.exists())return e.textContent='Nenhuma alteração registrada.';const d=s.data();let t=d.alteradoEm;if(t?.toDate)t=t.toDate();e.textContent=(t instanceof Date?t.toLocaleString('pt-BR'):'Registrado')+' — '+(d.alteradoPor||'Administrador')}catch{e.textContent='Não foi possível carregar.'}}
-window.resumoEscala=async()=>{if(!admin())return;try{const s=await getDoc(doc(db,'escalas','operacao'));if(!s.exists())return alert('Nenhuma escala salva.');const d=s.data();alert(`🕘 RESUMO DA ESCALA\n\nData: ${d.dataEscala||'-'}\nMês: ${d.mesOperacao||'-'}\nMotoristas: ${(d.motoristas||[]).length}\nHorários: ${(d.horarios||d.linhasHorario||[]).length}\nAlterado por: ${d.alteradoPor||'-'}`)}catch(e){console.error(e);alert('Não foi possível consultar a escala.')}};
-</script>
-</body>
-</html>
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+import {
+  getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+import {
+  getFirestore, doc, setDoc, getDoc, collection, addDoc, serverTimestamp, query, orderBy, limit, getDocs
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDEoZcZZ5ZQzDJzwwD_Z-HJ7rWZ3oINErM",
+  authDomain: "mobibrasil-pe-virtual.firebaseapp.com",
+  projectId: "mobibrasil-pe-virtual",
+  storageBucket: "mobibrasil-pe-virtual.firebasestorage.app",
+  messagingSenderId: "20078213852",
+  appId: "1:20078213852:web:a99ecdab91221a7cfa1219",
+  measurementId: "G-M0EBV1TZWQ"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+const ADMIN_EMAILS = [
+  "matheusaehenrique@gmail.com"
+];
+
+const LINHAS = [
+  {codigo:"1946",nome:"TI Igarassu", primeira:"04:30", ultima:"23:40", viagens:36},
+  {codigo:"1062",nome:"TI Abreu e Lima", primeira:"05:00", ultima:"22:50", viagens:30},
+  {codigo:"1076",nome:"TI Pelópidas", primeira:"04:50", ultima:"23:15", viagens:32},
+  {codigo:"1909",nome:"Nova Aurora", primeira:"05:20", ultima:"22:30", viagens:28},
+  {codigo:"1917",nome:"Paulista", primeira:"04:40", ultima:"23:00", viagens:30},
+  {codigo:"1911",nome:"TI Abreu e Lima", primeira:"05:10", ultima:"22:40", viagens:28},
+  {codigo:"1937",nome:"TI Abreu e Lima / Nova Aurora", primeira:"05:00", ultima:"22:00", viagens:26}
+];
+
+const VEICULOS = [
+ {numero:"1309",modelo:"Apache VIP V",ano:"2026",tipo:"Convencional",ar:"Sim"},
+ {numero:"1470",modelo:"Mascarello Granvia",ano:"2026",tipo:"Convencional",ar:"Sim"},
+ {numero:"1933",modelo:"Apache VIP V",ano:"2026",tipo:"Convencional",ar:"Sim"},
+ {numero:"1807",modelo:"Torino S",ano:"2026",tipo:"Convencional",ar:"Sim"},
+ {numero:"1720",modelo:"Granvia",ano:"2025",tipo:"Convencional",ar:"Sim"},
+ {numero:"1905",modelo:"Granvia",ano:"2025",tipo:"Convencional",ar:"Sim"},
+ {numero:"1937",modelo:"Mascarello",ano:"2025",tipo:"Convencional",ar:"Sim"},
+ {numero:"1808",modelo:"Torino S",ano:"2026",tipo:"Convencional",ar:"Sim"},
+ {numero:"1809",modelo:"Torino S",ano:"2026",tipo:"Convencional",ar:"Sim"},
+ {numero:"1810",modelo:"Torino S",ano:"2026",tipo:"Convencional",ar:"Sim"},
+ {numero:"1811",modelo:"Torino S",ano:"2026",tipo:"Convencional",ar:"Sim"},
+ {numero:"1812",modelo:"Torino S",ano:"2026",tipo:"Convencional",ar:"Sim"},
+ {numero:"1813",modelo:"Torino S",ano:"2026",tipo:"Convencional",ar:"Sim"},
+ {numero:"1814",modelo:"Torino S",ano:"2026",tipo:"Convencional",ar:"Sim"},
+ {numero:"1815",modelo:"Torino S",ano:"2026",tipo:"Convencional",ar:"Sim"},
+ {numero:"1816",modelo:"Torino S",ano:"2026",tipo:"Convencional",ar:"Sim"},
+ {numero:"1817",modelo:"Torino S",ano:"2026",tipo:"Convencional",ar:"Sim"},
+ {numero:"1818",modelo:"Torino S",ano:"2026",tipo:"Convencional",ar:"Sim"},
+ {numero:"1819",modelo:"Torino S",ano:"2026",tipo:"Convencional",ar:"Sim"},
+ {numero:"1820",modelo:"Torino S",ano:"2026",tipo:"Convencional",ar:"Sim"},
+ {numero:"1821",modelo:"Torino S",ano:"2026",tipo:"Convencional",ar:"Sim"},
+ {numero:"1822",modelo:"Torino S",ano:"2026",tipo:"Convencional",ar:"Sim"},
+ {numero:"1823",modelo:"Torino S",ano:"2026",tipo:"Convencional",ar:"Sim"},
+ {numero:"1824",modelo:"Torino S",ano:"2026",tipo:"Convencional",ar:"Sim"},
+ {numero:"1825",modelo:"Torino S",ano:"2026",tipo:"Convencional",ar:"Sim"}
+];
+
+const MOTORISTAS = Array.from({length:25},(_,i)=>`Motorista ${String(i+1).padStart(2,"0")}`);
+
+function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));}
+function hoje(){return new Date().toISOString().slice(0,10);}
+function mesAtual(){const d=new Date();return d.toLocaleString("pt-BR",{month:"long",year:"numeric"}).replace(/^./,c=>c.toUpperCase());}
+function fmtData(v){if(!v)return "";const [y,m,d]=v.split("-");return `${d}/${m}/${y}`;}
+function toast(msg){const t=document.getElementById("toast");t.textContent=msg;t.style.display="block";clearTimeout(window._toast);window._toast=setTimeout(()=>t.style.display="none",3200);}
+window.toast=toast;
+
+function linhaInfo(codigo){return LINHAS.find(x=>x.codigo===codigo);}
+function veiculoInfo(numero){return VEICULOS.find(x=>x.numero===numero);}
+
+function selectLinha(selected=""){
+ return `<select class="sel-linha" onchange="linhaMudou(this)"><option value="">Selecionar linha</option>${LINHAS.map(l=>`<option value="${l.codigo}" ${l.codigo===selected?"selected":""}>${l.codigo} - ${esc(l.nome)}</option>`).join("")}</select>`;
+}
+function selectVeiculo(selected=""){
+ return `<select class="sel-veiculo" onchange="veiculoMudou(this)"><option value="">Selecionar veículo</option>${VEICULOS.map(v=>`<option value="${v.numero}" ${v.numero===selected?"selected":""}>${v.numero} - ${esc(v.modelo)}</option>`).join("")}</select>`;
+}
+function selectMotorista(selected=""){
+ return `<select class="sel-motorista">${MOTORISTAS.map(m=>`<option ${m===selected?"selected":""}>${m}</option>`).join("")}</select>`;
+}
+function linhaHorarioHtml(codigo,primeira,ultima){
+ if(!codigo)return `<div class="horario"><div style="color:#777;text-align:center">Selecione a linha</div></div>`;
+ const l=linhaInfo(codigo); primeira=primeira||l.primeira; ultima=ultima||l.ultima;
+ return `<div class="horario">
+  <div class="horarios">
+   <div><small>Primeira viagem</small><strong>☀️ ${esc(primeira)}</strong></div>
+   <div><small>Última viagem</small><strong>🌙 ${esc(ultima)}</strong></div>
+  </div>
+  <div class="intervalo">Intervalo válido</div>
+  <div class="barra"></div>
+  <div style="display:flex;justify-content:space-between;font-size:12px;color:#555;margin-top:4px"><span>${esc(primeira)}</span><span>${esc(ultima)}</span></div>
+ </div>`;
+}
+
+function novaLinha(data={},idx){
+ const l=linhaInfo(data.linha)||{};
+ const primeira=data.primeira||l.primeira||"";
+ const ultima=data.ultima||l.ultima||"";
+ const v=veiculoInfo(data.veiculo)||{};
+ const status=data.status||(idx===4?"Folga":"Ativo");
+ return `<tr data-row>
+  <td><b>${String(idx+1).padStart(2,"0")}</b></td>
+  <td>${selectMotorista(data.motorista||MOTORISTAS[idx]||"")}</td>
+  <td>${selectLinha(data.linha||"")}</td>
+  <td class="cel-horario">${linhaHorarioHtml(data.linha,primeira,ultima)}</td>
+  <td>${selectVeiculo(data.veiculo||"")}</td>
+  <td><input class="inp-osm" value="${esc(data.osm||String(idx+1).padStart(3,"0"))}" placeholder="OSM"></td>
+  <td><select class="sel-status"><option ${status==="Ativo"?"selected":""}>Ativo</option><option ${status==="Folga"?"selected":""}>Folga</option></select></td>
+  <td><button class="btn-delete" onclick="removerMotorista(this)">🗑️</button></td>
+ </tr>`;
+}
+
+function atualizarResumo(){
+ const rows=[...document.querySelectorAll("#tbodyEscala tr[data-row]")];
+ const veiculos=new Set(),linhas=new Set();let viagens=0;
+ rows.forEach(r=>{
+  const l=r.querySelector(".sel-linha")?.value;
+  const v=r.querySelector(".sel-veiculo")?.value;
+  if(l)linhas.add(l);if(v)veiculos.add(v);
+  if(l && r.querySelector(".sel-status")?.value==="Ativo") viagens+=linhaInfo(l)?.viagens||0;
+ });
+ document.getElementById("nMotoristas").textContent=rows.length;
+ document.getElementById("nVeiculos").textContent=veiculos.size;
+ document.getElementById("nLinhas").textContent=linhas.size;
+ document.getElementById("nViagens").textContent=viagens;
+}
+
+window.linhaMudou=function(sel){
+ const tr=sel.closest("tr");const l=linhaInfo(sel.value);const cell=tr.querySelector(".cel-horario");
+ cell.innerHTML=linhaHorarioHtml(sel.value,l?.primeira,l?.ultima);atualizarResumo();
+};
+window.veiculoMudou=function(sel){atualizarResumo();};
+
+window.removerMotorista=function(btn){
+ const rows=document.querySelectorAll("#tbodyEscala tr");
+ if(rows.length<=1){toast("A escala precisa ter pelo menos um motorista.");return}
+ btn.closest("tr").remove();
+ renumerar();atualizarResumo();
+};
+function renumerar(){document.querySelectorAll("#tbodyEscala tr").forEach((r,i)=>r.children[0].innerHTML=`<b>${String(i+1).padStart(2,"0")}</b>`);}
+
+window.adicionarMotoristaEscala=function(){
+ const tbody=document.getElementById("tbodyEscala");
+ const i=tbody.querySelectorAll("tr").length;
+ tbody.insertAdjacentHTML("beforeend",novaLinha({},i));
+ renumerar();atualizarResumo();
+ document.querySelector("#tabelaArea").scrollIntoView({behavior:"smooth",block:"center"});
+};
+
+function coletarEscala(){
+ return [...document.querySelectorAll("#tbodyEscala tr[data-row]")].map(r=>({
+  motorista:r.querySelector(".sel-motorista").value,
+  linha:r.querySelector(".sel-linha").value,
+  primeira:linhaInfo(r.querySelector(".sel-linha").value)?.primeira||"",
+  ultima:linhaInfo(r.querySelector(".sel-linha").value)?.ultima||"",
+  veiculo:r.querySelector(".sel-veiculo").value,
+  osm:r.querySelector(".inp-osm").value.trim(),
+  status:r.querySelector(".sel-status").value
+ }));
+}
+
+async function carregarHistorico(){
+ const box=document.getElementById("historicoLista");if(!box)return;
+ try{
+  const q=query(collection(db,"escalas","operacao","historico"),orderBy("criadoEm","desc"),limit(3));
+  const snap=await getDocs(q);
+  if(snap.empty){box.innerHTML=`<div class="sem-dados">Nenhuma alteração registrada ainda.</div>`;return}
+  box.innerHTML=snap.docs.map(d=>{
+   const x=d.data();const data=x.criadoEm?.toDate?x.criadoEm.toDate():null;
+   const texto=data?data.toLocaleString("pt-BR",{dateStyle:"short",timeStyle:"short"}):"Agora";
+   return `<div class="hist-item"><span>${texto}</span><b>Escala atualizada</b></div>`;
+  }).join("");
+ }catch(e){box.innerHTML=`<div class="sem-dados">Histórico disponível após configurar as regras do Firestore.</div>`;}
+}
+
+async function carregarEscalaSalva(){
+ try{
+  const ref=doc(db,"escalas","operacao");
+  const snap=await getDoc(ref);
+  if(!snap.exists())return null;
+  return snap.data();
+ }catch(e){console.warn("Não foi possível carregar escala:",e);return null}
+}
+
+window.abrirEscala=async function(){
+ if(!auth.currentUser || !ADMIN_EMAILS.includes((auth.currentUser.email||"").toLowerCase())){
+  toast("Apenas administradores podem alterar a escala.");return;
+ }
+ if(document.getElementById("modalEscala"))return;
+ const salva=await carregarEscalaSalva();
+ const rows=(salva?.motoristas?.length?salva.motoristas:Array.from({length:5},(_,i)=>({
+  motorista:MOTORISTAS[i],linha:LINHAS[i%LINHAS.length].codigo,veiculo:VEICULOS[i].numero,osm:String(i+1).padStart(3,"0"),status:i===4?"Folga":"Ativo"
+ })));
+ const dataEscala=salva?.dataEscala||hoje(),mes=salva?.mesOperacao||mesAtual();
+
+ const modal=document.createElement("div");modal.id="modalEscala";
+ modal.innerHTML=`<div class="escala-box">
+  <div class="escala-head">
+   <button class="fechar" onclick="fecharEscala()">×</button>
+   <h1>📋 Alterar Escala</h1>
+   <p>Edite e salve a escala operacional da empresa</p>
+  </div>
+
+  <div class="info-grid">
+   <div class="info-card"><b>📅 Data da escala</b><input id="dataEscala" type="date" value="${esc(dataEscala)}"></div>
+   <div class="info-card"><b>📆 Mês de operação</b><select id="mesOperacao">
+    ${["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Se
