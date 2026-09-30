@@ -1786,9 +1786,36 @@ onAuthStateChanged(auth, async (user) => {
       login.style.display = "none";
     }
 
+    const tipoUsuario = localStorage.getItem("tipoUsuario");
+
+if (tipoUsuario === "admin") {
+
     if (dashboard) {
-      dashboard.style.display = "block";
+        dashboard.style.display = "block";
     }
+
+    const painelMotorista = document.getElementById("painelMotorista");
+
+    if (painelMotorista) {
+        painelMotorista.style.display = "none";
+    }
+
+} else {
+
+    if (dashboard) {
+        dashboard.style.display = "none";
+    }
+
+    const painelMotorista = document.getElementById("painelMotorista");
+
+    if (painelMotorista) {
+        painelMotorista.style.display = "block";
+        painelMotorista.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    }
+  }
 
     const nome =
       document.getElementById("nomeUsuario");
