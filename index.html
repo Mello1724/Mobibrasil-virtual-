@@ -88,7 +88,7 @@ button{border:0;border-radius:11px;padding:13px 18px;font-weight:bold}
     <input id="email" type="email" placeholder="seuemail@gmail.com" autocomplete="email">
     <label for="senha">Senha</label>
     <input id="senha" type="password" placeholder="Digite sua senha" autocomplete="current-password">
-    <button id="btnEntrar" class="btn-principal" onclick="entrar()">Entrar</button>
+    <button type="button" id="btnEntrar" class="btn-principal" onclick="entrar()">Entrar</button>
     <div id="erro" class="erro"></div>
   </div>
 </main>
@@ -127,9 +127,6 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebas
 import {
   getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
-import {
-  getFirestore, doc, setDoc, getDoc, collection, addDoc, serverTimestamp, query, orderBy, limit, getDocs
-} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDEoZcZZ5ZQzDJzwwD_Z-HJ7rWZ3oINErM",
@@ -143,7 +140,21 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const db = getFirestore(app);
+
+
+let db = null;
+let firestorePromise = null;
+async function getDb(){
+  if(db) return db;
+  if(!firestorePromise){
+    firestorePromise = import("https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js").then(m=>{
+      db = m.getFirestore(app);
+      window.__firestore = m;
+      return db;
+    });
+  }
+  return firestorePromise;
+}
 
 const ADMIN_EMAILS = [
   "matheusaehenrique@gmail.com"
@@ -333,5 +344,4 @@ window.abrirEscala=async function(){
 
   <div class="info-grid">
    <div class="info-card"><b>📅 Data da escala</b><input id="dataEscala" type="date" value="${esc(dataEscala)}"></div>
-   <div class="info-card"><b>📆 Mês de operação</b><select id="mesOperacao">
-    ${["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Se
+   <div class="info
