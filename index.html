@@ -2,346 +2,3242 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
-<title>MobiBrasil PE Virtual</title>
-<style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
-body{background:#f3f5fb;color:#202124;min-height:100vh}
-button,input,select{font:inherit}
-button{cursor:pointer}
-.topo{background:linear-gradient(135deg,#6820df,#315be8);color:#fff;padding:25px 20px;text-align:center;box-shadow:0 4px 15px rgba(0,0,0,.15)}
-.logo{width:60px;height:60px;margin:auto;border-radius:18px;display:flex;align-items:center;justify-content:center;background:#fff;color:#6324d6;font-size:25px;font-weight:bold}
-.topo h1{margin-top:12px;font-size:22px}.topo p{margin-top:5px;opacity:.9}
-.container{width:92%;max-width:1100px;margin:30px auto}
-.card{background:#fff;border-radius:20px;padding:25px;box-shadow:0 5px 20px rgba(0,0,0,.08);margin-bottom:20px}
-.login{max-width:500px;margin:40px auto}
-h2{margin-bottom:18px;color:#4f20b7}
-label{display:block;margin:15px 0 7px;font-weight:bold}
-input,select{width:100%;padding:13px;border:1px solid #ddd;border-radius:11px;background:#fff;outline:none}
-input:focus,select:focus{border-color:#6331f5}
-button{border:0;border-radius:11px;padding:13px 18px;font-weight:bold}
-.btn-principal{width:100%;margin-top:22px;background:linear-gradient(135deg,#7022df,#345de9);color:#fff}
-.btn-sair{background:#eee;color:#333;margin-top:15px}
-.erro{margin-top:15px;padding:12px;background:#ffe8e8;color:#b3261e;border-radius:10px;display:none}
-.dashboard{display:none}.boas-vindas{font-size:20px;font-weight:bold;margin-bottom:8px}.subtitulo{color:#666;margin-bottom:18px}
-.status{display:inline-block;padding:6px 10px;background:#e7f7ed;color:#18743b;border-radius:20px;font-size:13px}
-.menu{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px}
-.menu-card{background:#fff;padding:25px 15px;border-radius:18px;text-align:center;box-shadow:0 4px 15px rgba(0,0,0,.07)}
-.icone{font-size:32px;margin-bottom:10px}.menu-card h3{margin-bottom:5px;color:#4f20b7}.menu-card p{color:#777;font-size:14px}
-.rodape{text-align:center;color:#888;padding:30px 10px;font-size:13px}
-#painelAdmin{display:none}.admin-title{color:#172554;margin-bottom:6px}
-.admin-btn{width:100%;margin-top:10px;color:#fff}.purple{background:#6331f5}.blue{background:#1677ff}.green{background:#198754}
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-#modalEscala{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:99999;overflow:auto;padding:10px}
-.escala-box{max-width:1200px;margin:10px auto;background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.3)}
-.escala-head{background:linear-gradient(135deg,#304ffe,#6331f5);color:#fff;padding:22px;position:relative}
-.escala-head h1{font-size:30px}.escala-head p{margin-top:7px;font-size:16px}
-.fechar{position:absolute;right:15px;top:15px;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.2);color:#fff;font-size:25px;padding:0}
-.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:18px}
-.info-card{padding:17px;background:#f5f3ff;border-radius:15px}
-.info-card b{display:block;color:#172554;margin-bottom:9px}.info-card small{color:#666}
-.escala-area{padding:0 18px 18px}.escala-inner{background:#f8f9ff;border-radius:15px;padding:18px}
-.escala-inner h2{color:#172554;margin-bottom:5px}.escala-inner>p{color:#666;margin-bottom:15px}
-.acoes-top{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:15px}.acoes-top button{color:#fff;flex:1;min-width:170px}
-.tabela-scroll{overflow-x:auto;border-radius:12px}
-.tabela{width:100%;min-width:1080px;border-collapse:collapse;background:#fff}
-.tabela th{background:#eef0f8;color:#172554;padding:12px 8px;text-align:left;font-size:13px;white-space:nowrap}
-.tabela td{padding:8px 7px;border-top:1px solid #eee;vertical-align:middle}
-.tabela input,.tabela select{padding:9px;border-radius:9px;font-size:13px}
-.horario{min-width:195px;background:#f4f0ff;border-radius:10px;padding:9px}
-.horarios{display:flex;justify-content:space-between;gap:7px}.horarios strong{display:block;color:#172554;font-size:14px}.horarios small{color:#555}
-.intervalo{margin-top:7px;background:#d9f7e3;color:#168044;border-radius:8px;padding:4px;font-size:11px;font-weight:bold;text-align:center}
-.barra{height:7px;margin-top:8px;border-radius:10px;background:linear-gradient(90deg,#4285f4,#6331f5)}
-.status-cell{display:inline-block;padding:8px 10px;border-radius:10px;font-size:12px;font-weight:bold;white-space:nowrap}
-.ativo{background:#d9f7e3;color:#168044}.folga{background:#fff0bf;color:#8b6800}
-.btn-delete{background:#ffe0e0;color:#c62828;padding:9px 11px}
-.aviso{margin-top:18px;padding:15px;background:#fff3df;border:1px solid #ffc76d;border-radius:14px;color:#8a4500}
-.resumo{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:15px}
-.resumo-card{padding:18px;border-radius:18px;background:#eef5ff}.historico{padding:18px;border-radius:18px;background:#f4efff}
-.resumo-card h3,.historico h3{color:#172554;margin-bottom:12px}.numeros{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.numero{background:#fff;border-radius:12px;text-align:center;padding:12px}.numero strong{display:block;font-size:25px;color:#1645c4}.numero span{font-size:11px;color:#555}
-.hist-item{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid rgba(80,50,150,.12);font-size:12px}.hist-item:last-child{border-bottom:0}.hist-item b{color:#25156e}
-.rodape-modal{padding:18px;background:#f5f7ff;display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
-.btn-cancelar{background:#fff;border:1px solid #ccc}.btn-salvar{background:#198754;color:#fff;min-width:210px}
-.loading{opacity:.65;pointer-events:none}.sem-dados{padding:30px;text-align:center;color:#777}
-.toast{position:fixed;right:18px;bottom:18px;z-index:100000;max-width:360px;padding:14px 17px;border-radius:12px;color:#fff;background:#222;box-shadow:0 8px 25px rgba(0,0,0,.25);display:none}
-@media(max-width:700px){
- .info-grid{grid-template-columns:1fr}.resumo{grid-template-columns:1fr}.numeros{grid-template-columns:repeat(2,1fr)}
- .escala-head h1{font-size:24px}.escala-head p{font-size:14px}
- #modalEscala{padding:0}.escala-box{margin:0;border-radius:0;min-height:100vh}
+<title>MobiBrasil PE Virtual</title>
+
+<style>
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
 }
+
+body{
+  background:#f4f5fb;
+  color:#202124;
+  min-height:100vh;
+}
+
+.topo{
+  background:linear-gradient(135deg,#6d20d9,#315be8);
+  color:white;
+  padding:25px 20px;
+  text-align:center;
+  box-shadow:0 4px 15px rgba(0,0,0,.15);
+}
+
+.logo{
+  width:60px;
+  height:60px;
+  margin:auto;
+  border-radius:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:white;
+  color:#6324d6;
+  font-size:25px;
+  font-weight:bold;
+}
+
+.topo h1{
+  margin-top:12px;
+  font-size:22px;
+}
+
+.topo p{
+  margin-top:5px;
+  opacity:.9;
+}
+
+.container{
+  width:94%;
+  max-width:1100px;
+  margin:30px auto;
+}
+
+.card{
+  background:white;
+  border-radius:20px;
+  padding:25px;
+  box-shadow:0 5px 20px rgba(0,0,0,.08);
+  margin-bottom:20px;
+}
+
+.login{
+  max-width:600px;
+  margin:40px auto;
+}
+
+h2{
+  margin-bottom:20px;
+  color:#4f20b7;
+}
+
+label{
+  display:block;
+  margin-top:15px;
+  margin-bottom:7px;
+  font-weight:bold;
+}
+
+input,select{
+  width:100%;
+  padding:14px;
+  border:1px solid #ddd;
+  border-radius:12px;
+  font-size:16px;
+  outline:none;
+  background:white;
+}
+
+input:focus,
+select:focus{
+  border-color:#6d20d9;
+}
+
+button{
+  border:none;
+  border-radius:12px;
+  padding:14px 20px;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+button:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+}
+
+.btn-principal{
+  width:100%;
+  margin-top:22px;
+  background:linear-gradient(135deg,#7022df,#345de9);
+  color:white;
+}
+
+.btn-sair{
+  background:#eee;
+  color:#333;
+  margin-top:15px;
+}
+
+.erro{
+  margin-top:15px;
+  padding:12px;
+  background:#ffe8e8;
+  color:#b3261e;
+  border-radius:10px;
+  display:none;
+}
+
+.sucesso{
+  margin-top:15px;
+  padding:12px;
+  background:#e8f7ed;
+  color:#18743b;
+  border-radius:10px;
+  display:none;
+}
+
+.dashboard{
+  display:none;
+}
+
+.boas-vindas{
+  font-size:20px;
+  font-weight:bold;
+  margin-bottom:8px;
+}
+
+.subtitulo{
+  color:#666;
+  margin-bottom:20px;
+}
+
+.status{
+  display:inline-block;
+  padding:6px 10px;
+  background:#e7f7ed;
+  color:#18743b;
+  border-radius:20px;
+  font-size:13px;
+  margin-top:10px;
+}
+
+.menu{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:15px;
+}
+
+.menu-card{
+  background:white;
+  padding:25px 15px;
+  border-radius:18px;
+  text-align:center;
+  box-shadow:0 4px 15px rgba(0,0,0,.07);
+}
+
+.icone{
+  font-size:32px;
+  margin-bottom:10px;
+}
+
+.menu-card h3{
+  margin-bottom:5px;
+  color:#4f20b7;
+}
+
+.menu-card p{
+  color:#777;
+  font-size:14px;
+}
+
+.admin-card{
+  background:white;
+  padding:20px;
+  border-radius:18px;
+  box-shadow:0 4px 15px rgba(0,0,0,.08);
+  margin-bottom:20px;
+}
+
+.admin-card h2{
+  margin-bottom:8px;
+}
+
+.admin-btn{
+  width:100%;
+  margin-top:10px;
+  color:white;
+}
+
+.btn-roxo{
+  background:#5b2cff;
+}
+
+.btn-azul{
+  background:#1677ff;
+}
+
+.btn-verde{
+  background:#198754;
+}
+
+.rodape{
+  text-align:center;
+  color:#888;
+  padding:30px 10px;
+  font-size:13px;
+}
+
+
+/* =========================
+   MODAL ESCALA
+========================= */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.68);
+  z-index:9999;
+  overflow-y:auto;
+  padding:10px;
+}
+
+.modal-caixa{
+  max-width:1250px;
+  margin:10px auto;
+  background:#fff;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 15px 60px rgba(0,0,0,.4);
+}
+
+.modal-topo{
+  background:linear-gradient(135deg,#304ffe,#6331f5);
+  color:white;
+  padding:25px;
+  position:relative;
+}
+
+.modal-topo h1{
+  font-size:28px;
+  margin:0;
+}
+
+.modal-topo p{
+  margin-top:7px;
+  opacity:.9;
+}
+
+.fechar{
+  position:absolute;
+  right:18px;
+  top:18px;
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  background:rgba(255,255,255,.2);
+  color:white;
+  font-size:28px;
+  padding:0;
+}
+
+.info-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+  padding:18px;
+}
+
+.info-box{
+  background:#f5f3ff;
+  border-radius:15px;
+  padding:18px;
+}
+
+.info-box b{
+  display:block;
+  margin-bottom:8px;
+  color:#172554;
+}
+
+.info-box p{
+  color:#555;
+}
+
+.escala-area{
+  padding:0 18px 20px;
+}
+
+.escala-box{
+  background:#f8f9ff;
+  border-radius:18px;
+  padding:20px;
+}
+
+.escala-titulo{
+  color:#172554;
+  font-size:23px;
+  margin-bottom:6px;
+}
+
+.escala-subtitulo{
+  color:#666;
+  margin-bottom:15px;
+}
+
+.acoes-topo{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:15px;
+}
+
+.btn-add{
+  background:#6331f5;
+  color:white;
+}
+
+.btn-import{
+  background:#1677ff;
+  color:white;
+}
+
+.btn-save{
+  background:#198754;
+  color:white;
+}
+
+.tabela-container{
+  width:100%;
+  overflow-x:auto;
+  background:white;
+  border-radius:14px;
+  border:1px solid #ddd;
+}
+
+.tabela{
+  width:100%;
+  min-width:1050px;
+  border-collapse:collapse;
+}
+
+.tabela th{
+  background:#edf0fa;
+  color:#172554;
+  padding:12px 8px;
+  text-align:left;
+  border-bottom:1px solid #ddd;
+  white-space:nowrap;
+}
+
+.tabela td{
+  padding:8px;
+  border-bottom:1px solid #eee;
+  vertical-align:middle;
+}
+
+.tabela tr:last-child td{
+  border-bottom:none;
+}
+
+.tabela select,
+.tabela input{
+  padding:10px;
+  font-size:14px;
+  border-radius:9px;
+  min-width:120px;
+}
+
+.numero{
+  font-weight:bold;
+  color:#444;
+  text-align:center;
+}
+
+.horario{
+  min-width:200px;
+  background:#f4f0ff;
+  border-radius:10px;
+  padding:9px;
+}
+
+.horario-cabecalho{
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+  font-size:11px;
+  color:#172554;
+}
+
+.horario-cabecalho strong{
+  font-size:16px;
+}
+
+.intervalo{
+  text-align:center;
+  color:#198754;
+  font-size:11px;
+  font-weight:bold;
+  margin:4px 0;
+}
+
+.barra-horario{
+  height:8px;
+  border-radius:10px;
+  background:linear-gradient(90deg,#3687ff,#6739df);
+}
+
+.horario-footer{
+  display:flex;
+  justify-content:space-between;
+  font-size:11px;
+  color:#555;
+  margin-top:4px;
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  padding:9px 12px;
+  border-radius:10px;
+  font-size:12px;
+  font-weight:bold;
+  white-space:nowrap;
+}
+
+.badge-ativo{
+  background:#dff6e7;
+  color:#18743b;
+}
+
+.badge-folga{
+  background:#fff0bd;
+  color:#9b6a00;
+}
+
+.badge-bloqueado{
+  background:#ffe0e0;
+  color:#b3261e;
+}
+
+.btn-excluir{
+  background:#ffe1e5;
+  color:#c82333;
+  padding:10px 12px;
+  font-size:18px;
+}
+
+.alerta{
+  background:#fff0dd;
+  border:1px solid #ffd39c;
+  color:#9a5700;
+  padding:15px;
+  border-radius:14px;
+  margin-top:15px;
+}
+
+.resumo-historico{
+  display:grid;
+  grid-template-columns:1.2fr 1fr;
+  gap:15px;
+  margin-top:15px;
+}
+
+.resumo{
+  background:#edf3ff;
+  border-radius:15px;
+  padding:18px;
+}
+
+.resumo h3,
+.historico h3{
+  color:#172554;
+  margin-bottom:15px;
+}
+
+.resumo-numeros{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+}
+
+.resumo-item{
+  background:white;
+  border-radius:12px;
+  padding:12px 5px;
+  text-align:center;
+}
+
+.resumo-item strong{
+  display:block;
+  font-size:25px;
+  color:#1538c7;
+}
+
+.resumo-item span{
+  font-size:11px;
+  color:#555;
+}
+
+.historico{
+  background:#f1edff;
+  border-radius:15px;
+  padding:18px;
+}
+
+.historico-item{
+  padding:9px 0;
+  border-bottom:1px solid rgba(0,0,0,.08);
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  font-size:13px;
+}
+
+.historico-item:last-child{
+  border-bottom:none;
+}
+
+.modal-rodape{
+  padding:18px;
+  background:#f5f7ff;
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.btn-cancelar{
+  background:white;
+  border:1px solid #ccc;
+  color:#222;
+}
+
+.loading{
+  text-align:center;
+  padding:30px;
+  color:#666;
+}
+
+.toast{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  z-index:20000;
+  padding:15px 20px;
+  border-radius:12px;
+  color:white;
+  background:#333;
+  box-shadow:0 5px 25px rgba(0,0,0,.25);
+  display:none;
+  max-width:90%;
+}
+
+.toast.sucesso-toast{
+  background:#198754;
+}
+
+.toast.erro-toast{
+  background:#c82333;
+}
+
+
+/* RESPONSIVO */
+
+@media(max-width:800px){
+
+  .info-grid{
+    grid-template-columns:1fr;
+  }
+
+  .resumo-historico{
+    grid-template-columns:1fr;
+  }
+
+  .resumo-numeros{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .modal{
+    padding:5px;
+  }
+
+  .modal-caixa{
+    margin:0 auto;
+    border-radius:14px;
+  }
+
+  .modal-topo h1{
+    font-size:23px;
+  }
+
+  .modal-topo{
+    padding:20px;
+  }
+
+}
+
 </style>
 </head>
+
+
 <body>
 
+
 <header class="topo">
+
   <div class="logo">MB</div>
+
   <h1>MOBIBRASIL PE VIRTUAL</h1>
+
   <p>Portal Operacional</p>
+
 </header>
 
+
+<!-- =========================
+     LOGIN
+========================= -->
+
 <main id="areaLogin" class="container">
+
   <div class="card login">
+
     <h2>Entrar</h2>
-    <p style="color:#666">Use seu e-mail e senha cadastrados no Firebase.</p>
-    <label for="email">Login / E-mail</label>
-    <input id="email" type="email" placeholder="seuemail@gmail.com" autocomplete="email">
-    <label for="senha">Senha</label>
-    <input id="senha" type="password" placeholder="Digite sua senha" autocomplete="current-password">
-    <button type="button" id="btnEntrar" class="btn-principal" onclick="entrar()">Entrar</button>
+
+    <p style="color:#666;">
+      Use seu e-mail e senha cadastrados no Firebase.
+    </p>
+
+    <label for="email">
+      Login / E-mail
+    </label>
+
+    <input
+      id="email"
+      type="email"
+      placeholder="seuemail@gmail.com"
+      autocomplete="email"
+    >
+
+    <label for="senha">
+      Senha
+    </label>
+
+    <input
+      id="senha"
+      type="password"
+      placeholder="Digite sua senha"
+      autocomplete="current-password"
+    >
+
+    <button
+      id="btnEntrar"
+      class="btn-principal"
+      onclick="entrar()"
+    >
+      Entrar
+    </button>
+
     <div id="erro" class="erro"></div>
+
   </div>
+
 </main>
+
+
+<!-- =========================
+     DASHBOARD
+========================= -->
 
 <main id="areaDashboard" class="container dashboard">
+
   <div class="card">
-    <div class="boas-vindas">Olá, <span id="nomeUsuario">Usuário</span>!</div>
-    <div class="subtitulo">Bem-vindo ao Portal Operacional MobiBrasil PE Virtual.</div>
-    <span class="status">● Sistema conectado</span><br>
-    <button class="btn-sair" onclick="sair()">Sair</button>
+
+    <div class="boas-vindas">
+      Olá, <span id="nomeUsuario">Usuário</span>!
+    </div>
+
+    <div class="subtitulo">
+      Bem-vindo ao Portal Operacional MobiBrasil PE Virtual.
+    </div>
+
+    <span class="status">
+      ● Sistema conectado
+    </span>
+
+    <br>
+
+    <button
+      class="btn-sair"
+      onclick="sair()"
+    >
+      Sair
+    </button>
+
   </div>
+
+
+  <!-- MENU -->
 
   <div class="menu">
-    <div class="menu-card"><div class="icone">📋</div><h3>Minha Escala</h3><p>Consulte sua escala de trabalho.</p></div>
-    <div class="menu-card"><div class="icone">🚌</div><h3>Veículos</h3><p>Consulte os veículos cadastrados.</p></div>
-    <div class="menu-card"><div class="icone">🛣️</div><h3>Linhas</h3><p>Consulte as linhas da operação.</p></div>
-    <div class="menu-card"><div class="icone">🔧</div><h3>Vistoria</h3><p>Registre a vistoria diária.</p></div>
-    <div class="menu-card"><div class="icone">📄</div><h3>OSM</h3><p>Consulte e registre ordens de serviço.</p></div>
-    <div class="menu-card"><div class="icone">🔔</div><h3>Avisos</h3><p>Veja os comunicados da operação.</p></div>
+
+    <div class="menu-card">
+      <div class="icone">📋</div>
+      <h3>Minha Escala</h3>
+      <p>Consulte sua escala de trabalho.</p>
+    </div>
+
+    <div class="menu-card">
+      <div class="icone">🚌</div>
+      <h3>Veículos</h3>
+      <p>Consulte os veículos cadastrados.</p>
+    </div>
+
+    <div class="menu-card">
+      <div class="icone">🛣️</div>
+      <h3>Linhas</h3>
+      <p>Consulte as linhas da operação.</p>
+    </div>
+
+    <div class="menu-card">
+      <div class="icone">🔧</div>
+      <h3>Vistoria</h3>
+      <p>Registre a vistoria diária.</p>
+    </div>
+
+    <div class="menu-card">
+      <div class="icone">📄</div>
+      <h3>OSM</h3>
+      <p>Consulte e registre ordens de serviço.</p>
+    </div>
+
+    <div class="menu-card">
+      <div class="icone">🔔</div>
+      <h3>Avisos</h3>
+      <p>Veja os comunicados da operação.</p>
+    </div>
+
   </div>
 
-  <div id="painelAdmin" class="card">
-    <h2 class="admin-title">👑 Administração</h2>
-    <p style="color:#555">Área exclusiva dos administradores do MobiBrasil PE Virtual.</p>
-    <button class="admin-btn purple" onclick="abrirEscala()">📋 Alterar Escala</button>
-    <button class="admin-btn blue" onclick="toast('O gerenciamento de funcionários será integrado à escala.')">👥 Funcionários</button>
-    <button class="admin-btn green" onclick="toast('O cadastro de veículos será integrado ao banco de dados.')">🚌 Veículos</button>
+
+  <!-- PAINEL ADMIN -->
+
+  <div
+    id="painelAdmin"
+    class="admin-card"
+    style="display:none;"
+  >
+
+    <h2>
+      👑 Administração
+    </h2>
+
+    <p style="color:#666;">
+      Área exclusiva dos administradores do MobiBrasil PE Virtual.
+    </p>
+
+    <button
+      class="admin-btn btn-roxo"
+      onclick="abrirEscala()"
+    >
+      📋 Alterar Escala
+    </button>
+
+    <button
+      class="admin-btn btn-azul"
+      onclick="abrirFuncionarios()"
+    >
+      👥 Funcionários
+    </button>
+
+    <button
+      class="admin-btn btn-verde"
+      onclick="abrirVeiculos()"
+    >
+      🚌 Veículos
+    </button>
+
   </div>
+
 </main>
 
-<footer class="rodape">MobiBrasil PE Virtual © 2026</footer>
+
+<footer class="rodape">
+  MobiBrasil PE Virtual © 2026
+</footer>
+
+
 <div id="toast" class="toast"></div>
 
+
+<!-- =========================
+     FIREBASE
+========================= -->
+
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
 import {
-  getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut
-} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+  getAuth,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut
+}
+from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  collection,
+  addDoc,
+  serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+
+
+/* =====================================================
+   CONFIGURAÇÃO FIREBASE
+===================================================== */
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDEoZcZZ5ZQzDJzwwD_Z-HJ7rWZ3oINErM",
-  authDomain: "mobibrasil-pe-virtual.firebaseapp.com",
-  projectId: "mobibrasil-pe-virtual",
-  storageBucket: "mobibrasil-pe-virtual.firebasestorage.app",
-  messagingSenderId: "20078213852",
-  appId: "1:20078213852:web:a99ecdab91221a7cfa1219",
-  measurementId: "G-M0EBV1TZWQ"
+
+  apiKey:
+  "AIzaSyDEoZcZZ5ZQzDJzwwD_Z-HJ7rWZ3oINErM",
+
+  authDomain:
+  "mobibrasil-pe-virtual.firebaseapp.com",
+
+  projectId:
+  "mobibrasil-pe-virtual",
+
+  storageBucket:
+  "mobibrasil-pe-virtual.firebasestorage.app",
+
+  messagingSenderId:
+  "20078213852",
+
+  appId:
+  "1:20078213852:web:a99ecdab91221a7cfa1219",
+
+  measurementId:
+  "G-M0EBV1TZWQ"
 };
+
 
 const app = initializeApp(firebaseConfig);
+
 const auth = getAuth(app);
 
+const db = getFirestore(app);
 
-let db = null;
-let firestorePromise = null;
-async function getDb(){
-  if(db) return db;
-  if(!firestorePromise){
-    firestorePromise = import("https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js").then(m=>{
-      db = m.getFirestore(app);
-      window.__firestore = m;
-      return db;
-    });
-  }
-  return firestorePromise;
-}
 
-const ADMIN_EMAILS = [
+/* =====================================================
+   ADMINISTRADORES
+===================================================== */
+
+const ADMINS = [
+
   "matheusaehenrique@gmail.com"
+
 ];
 
-const LINHAS = [
-  {codigo:"1946",nome:"TI Igarassu", primeira:"04:30", ultima:"23:40", viagens:36},
-  {codigo:"1062",nome:"TI Abreu e Lima", primeira:"05:00", ultima:"22:50", viagens:30},
-  {codigo:"1076",nome:"TI Pelópidas", primeira:"04:50", ultima:"23:15", viagens:32},
-  {codigo:"1909",nome:"Nova Aurora", primeira:"05:20", ultima:"22:30", viagens:28},
-  {codigo:"1917",nome:"Paulista", primeira:"04:40", ultima:"23:00", viagens:30},
-  {codigo:"1911",nome:"TI Abreu e Lima", primeira:"05:10", ultima:"22:40", viagens:28},
-  {codigo:"1937",nome:"TI Abreu e Lima / Nova Aurora", primeira:"05:00", ultima:"22:00", viagens:26}
+
+/* =====================================================
+   DADOS DAS LINHAS
+===================================================== */
+
+const linhas = [
+
+  {
+    codigo:"1946",
+    nome:"TI Igarassu",
+    inicio:"04:30",
+    fim:"23:40",
+    viagens:36
+  },
+
+  {
+    codigo:"1062",
+    nome:"TI Abreu e Lima",
+    inicio:"05:00",
+    fim:"22:50",
+    viagens:30
+  },
+
+  {
+    codigo:"1076",
+    nome:"TI Pelópidas",
+    inicio:"04:50",
+    fim:"23:15",
+    viagens:32
+  },
+
+  {
+    codigo:"1909",
+    nome:"Nova Aurora",
+    inicio:"05:20",
+    fim:"22:30",
+    viagens:28
+  },
+
+  {
+    codigo:"1917",
+    nome:"Paulista",
+    inicio:"04:40",
+    fim:"23:00",
+    viagens:30
+  },
+
+  {
+    codigo:"1911",
+    nome:"TI Pelópidas / Paulista",
+    inicio:"05:00",
+    fim:"22:40",
+    viagens:28
+  },
+
+  {
+    codigo:"1937",
+    nome:"TI Abreu e Lima / Nova Aurora",
+    inicio:"05:10",
+    fim:"22:20",
+    viagens:26
+  },
+
+  {
+    codigo:"1940",
+    nome:"TI Igarassu / Centro",
+    inicio:"05:00",
+    fim:"22:00",
+    viagens:25
+  },
+
+  {
+    codigo:"1941",
+    nome:"TI Abreu e Lima / PCR",
+    inicio:"04:50",
+    fim:"22:40",
+    viagens:28
+  },
+
+  {
+    codigo:"1942",
+    nome:"TI Pelópidas / PCR",
+    inicio:"05:10",
+    fim:"23:00",
+    viagens:30
+  },
+
+  {
+    codigo:"1950",
+    nome:"TI Igarassu / PCR",
+    inicio:"04:45",
+    fim:"23:10",
+    viagens:32
+  },
+
+  {
+    codigo:"1951",
+    nome:"TI Abreu e Lima / PCR",
+    inicio:"05:00",
+    fim:"22:30",
+    viagens:28
+  },
+
+  {
+    codigo:"1952",
+    nome:"TI Pelópidas / PCR",
+    inicio:"05:15",
+    fim:"22:45",
+    viagens:29
+  },
+
+  {
+    codigo:"1953",
+    nome:"TI Igarassu / Parador",
+    inicio:"04:30",
+    fim:"23:00",
+    viagens:34
+  },
+
+  {
+    codigo:"1954",
+    nome:"TI Abreu e Lima / Parador",
+    inicio:"05:00",
+    fim:"22:30",
+    viagens:28
+  },
+
+  {
+    codigo:"1955",
+    nome:"TI Pelópidas / Parador",
+    inicio:"04:50",
+    fim:"22:50",
+    viagens:30
+  },
+
+  {
+    codigo:"1960",
+    nome:"TI Igarassu / BR-101",
+    inicio:"04:40",
+    fim:"23:20",
+    viagens:35
+  },
+
+  {
+    codigo:"1961",
+    nome:"TI Abreu e Lima / BR-101",
+    inicio:"05:00",
+    fim:"22:40",
+    viagens:29
+  },
+
+  {
+    codigo:"1962",
+    nome:"TI Pelópidas / BR-101",
+    inicio:"04:50",
+    fim:"23:10",
+    viagens:32
+  },
+
+  {
+    codigo:"1963",
+    nome:"TI Igarassu / Centro",
+    inicio:"05:20",
+    fim:"22:20",
+    viagens:27
+  }
+
 ];
 
-const VEICULOS = [
- {numero:"1309",modelo:"Apache VIP V",ano:"2026",tipo:"Convencional",ar:"Sim"},
- {numero:"1470",modelo:"Mascarello Granvia",ano:"2026",tipo:"Convencional",ar:"Sim"},
- {numero:"1933",modelo:"Apache VIP V",ano:"2026",tipo:"Convencional",ar:"Sim"},
- {numero:"1807",modelo:"Torino S",ano:"2026",tipo:"Convencional",ar:"Sim"},
- {numero:"1720",modelo:"Granvia",ano:"2025",tipo:"Convencional",ar:"Sim"},
- {numero:"1905",modelo:"Granvia",ano:"2025",tipo:"Convencional",ar:"Sim"},
- {numero:"1937",modelo:"Mascarello",ano:"2025",tipo:"Convencional",ar:"Sim"},
- {numero:"1808",modelo:"Torino S",ano:"2026",tipo:"Convencional",ar:"Sim"},
- {numero:"1809",modelo:"Torino S",ano:"2026",tipo:"Convencional",ar:"Sim"},
- {numero:"1810",modelo:"Torino S",ano:"2026",tipo:"Convencional",ar:"Sim"},
- {numero:"1811",modelo:"Torino S",ano:"2026",tipo:"Convencional",ar:"Sim"},
- {numero:"1812",modelo:"Torino S",ano:"2026",tipo:"Convencional",ar:"Sim"},
- {numero:"1813",modelo:"Torino S",ano:"2026",tipo:"Convencional",ar:"Sim"},
- {numero:"1814",modelo:"Torino S",ano:"2026",tipo:"Convencional",ar:"Sim"},
- {numero:"1815",modelo:"Torino S",ano:"2026",tipo:"Convencional",ar:"Sim"},
- {numero:"1816",modelo:"Torino S",ano:"2026",tipo:"Convencional",ar:"Sim"},
- {numero:"1817",modelo:"Torino S",ano:"2026",tipo:"Convencional",ar:"Sim"},
- {numero:"1818",modelo:"Torino S",ano:"2026",tipo:"Convencional",ar:"Sim"},
- {numero:"1819",modelo:"Torino S",ano:"2026",tipo:"Convencional",ar:"Sim"},
- {numero:"1820",modelo:"Torino S",ano:"2026",tipo:"Convencional",ar:"Sim"},
- {numero:"1821",modelo:"Torino S",ano:"2026",tipo:"Convencional",ar:"Sim"},
- {numero:"1822",modelo:"Torino S",ano:"2026",tipo:"Convencional",ar:"Sim"},
- {numero:"1823",modelo:"Torino S",ano:"2026",tipo:"Convencional",ar:"Sim"},
- {numero:"1824",modelo:"Torino S",ano:"2026",tipo:"Convencional",ar:"Sim"},
- {numero:"1825",modelo:"Torino S",ano:"2026",tipo:"Convencional",ar:"Sim"}
+
+/* =====================================================
+   DADOS DOS VEÍCULOS
+===================================================== */
+
+const veiculos = [
+
+  {
+    numero:"1309",
+    modelo:"Apache VIP V",
+    ano:"2025",
+    tipo:"Convencional",
+    ar:true
+  },
+
+  {
+    numero:"1470",
+    modelo:"Mascarello",
+    ano:"2024",
+    tipo:"Convencional",
+    ar:true
+  },
+
+  {
+    numero:"1933",
+    modelo:"Apache VIP V",
+    ano:"2025",
+    tipo:"Convencional",
+    ar:true
+  },
+
+  {
+    numero:"1807",
+    modelo:"Torino S",
+    ano:"2025",
+    tipo:"Convencional",
+    ar:true
+  },
+
+  {
+    numero:"1720",
+    modelo:"Granvia",
+    ano:"2024",
+    tipo:"Convencional",
+    ar:true
+  },
+
+  {
+    numero:"1905",
+    modelo:"Granvia",
+    ano:"2024",
+    tipo:"Convencional",
+    ar:true
+  },
+
+  {
+    numero:"1937",
+    modelo:"Torino S",
+    ano:"2025",
+    tipo:"Convencional",
+    ar:true
+  },
+
+  {
+    numero:"1938",
+    modelo:"Apache VIP V",
+    ano:"2025",
+    tipo:"Convencional",
+    ar:true
+  },
+
+  {
+    numero:"1939",
+    modelo:"Apache VIP V",
+    ano:"2025",
+    tipo:"Convencional",
+    ar:true
+  },
+
+  {
+    numero:"1940",
+    modelo:"Mascarello",
+    ano:"2025",
+    tipo:"Convencional",
+    ar:true
+  },
+
+  {
+    numero:"1941",
+    modelo:"Mascarello",
+    ano:"2025",
+    tipo:"Convencional",
+    ar:true
+  },
+
+  {
+    numero:"1942",
+    modelo:"Torino S",
+    ano:"2025",
+    tipo:"Convencional",
+    ar:true
+  },
+
+  {
+    numero:"1943",
+    modelo:"Torino S",
+    ano:"2025",
+    tipo:"Convencional",
+    ar:true
+  },
+
+  {
+    numero:"1944",
+    modelo:"Apache VIP V",
+    ano:"2025",
+    tipo:"Convencional",
+    ar:true
+  },
+
+  {
+    numero:"1945",
+    modelo:"Mascarello",
+    ano:"2025",
+    tipo:"Convencional",
+    ar:true
+  },
+
+  {
+    numero:"1946",
+    modelo:"Mascarello Granvia",
+    ano:"2025",
+    tipo:"BRT",
+    ar:true
+  },
+
+  {
+    numero:"1947",
+    modelo:"Mascarello Granvia",
+    ano:"2025",
+    tipo:"BRT",
+    ar:true
+  },
+
+  {
+    numero:"1948",
+    modelo:"Mascarello Granvia",
+    ano:"2025",
+    tipo:"BRT",
+    ar:true
+  },
+
+  {
+    numero:"1949",
+    modelo:"Torino S",
+    ano:"2025",
+    tipo:"Convencional",
+    ar:true
+  },
+
+  {
+    numero:"1950",
+    modelo:"Apache VIP V",
+    ano:"2025",
+    tipo:"Convencional",
+    ar:true
+  },
+
+  {
+    numero:"1951",
+    modelo:"Mascarello",
+    ano:"2025",
+    tipo:"Convencional",
+    ar:true
+  },
+
+  {
+    numero:"1952",
+    modelo:"Torino S",
+    ano:"2025",
+    tipo:"Convencional",
+    ar:true
+  },
+
+  {
+    numero:"1953",
+    modelo:"Apache VIP V",
+    ano:"2025",
+    tipo:"Convencional",
+    ar:true
+  },
+
+  {
+    numero:"1954",
+    modelo:"Mascarello",
+    ano:"2025",
+    tipo:"Convencional",
+    ar:true
+  },
+
+  {
+    numero:"1955",
+    modelo:"Torino S",
+    ano:"2025",
+    tipo:"Convencional",
+    ar:true
+  }
+
 ];
 
-const MOTORISTAS = Array.from({length:25},(_,i)=>`Motorista ${String(i+1).padStart(2,"0")}`);
 
-function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));}
-function hoje(){return new Date().toISOString().slice(0,10);}
-function mesAtual(){const d=new Date();return d.toLocaleString("pt-BR",{month:"long",year:"numeric"}).replace(/^./,c=>c.toUpperCase());}
-function fmtData(v){if(!v)return "";const [y,m,d]=v.split("-");return `${d}/${m}/${y}`;}
-function toast(msg){const t=document.getElementById("toast");t.textContent=msg;t.style.display="block";clearTimeout(window._toast);window._toast=setTimeout(()=>t.style.display="none",3200);}
-window.toast=toast;
+/* =====================================================
+   MOTORISTAS
+===================================================== */
 
-function linhaInfo(codigo){return LINHAS.find(x=>x.codigo===codigo);}
-function veiculoInfo(numero){return VEICULOS.find(x=>x.numero===numero);}
+let motoristas = [];
 
-function selectLinha(selected=""){
- return `<select class="sel-linha" onchange="linhaMudou(this)"><option value="">Selecionar linha</option>${LINHAS.map(l=>`<option value="${l.codigo}" ${l.codigo===selected?"selected":""}>${l.codigo} - ${esc(l.nome)}</option>`).join("")}</select>`;
-}
-function selectVeiculo(selected=""){
- return `<select class="sel-veiculo" onchange="veiculoMudou(this)"><option value="">Selecionar veículo</option>${VEICULOS.map(v=>`<option value="${v.numero}" ${v.numero===selected?"selected":""}>${v.numero} - ${esc(v.modelo)}</option>`).join("")}</select>`;
-}
-function selectMotorista(selected=""){
- return `<select class="sel-motorista">${MOTORISTAS.map(m=>`<option ${m===selected?"selected":""}>${m}</option>`).join("")}</select>`;
-}
-function linhaHorarioHtml(codigo,primeira,ultima){
- if(!codigo)return `<div class="horario"><div style="color:#777;text-align:center">Selecione a linha</div></div>`;
- const l=linhaInfo(codigo); primeira=primeira||l.primeira; ultima=ultima||l.ultima;
- return `<div class="horario">
-  <div class="horarios">
-   <div><small>Primeira viagem</small><strong>☀️ ${esc(primeira)}</strong></div>
-   <div><small>Última viagem</small><strong>🌙 ${esc(ultima)}</strong></div>
-  </div>
-  <div class="intervalo">Intervalo válido</div>
-  <div class="barra"></div>
-  <div style="display:flex;justify-content:space-between;font-size:12px;color:#555;margin-top:4px"><span>${esc(primeira)}</span><span>${esc(ultima)}</span></div>
- </div>`;
+for(let i=1;i<=25;i++){
+
+  motoristas.push(
+    "Motorista " +
+    String(i).padStart(2,"0")
+  );
+
 }
 
-function novaLinha(data={},idx){
- const l=linhaInfo(data.linha)||{};
- const primeira=data.primeira||l.primeira||"";
- const ultima=data.ultima||l.ultima||"";
- const v=veiculoInfo(data.veiculo)||{};
- const status=data.status||(idx===4?"Folga":"Ativo");
- return `<tr data-row>
-  <td><b>${String(idx+1).padStart(2,"0")}</b></td>
-  <td>${selectMotorista(data.motorista||MOTORISTAS[idx]||"")}</td>
-  <td>${selectLinha(data.linha||"")}</td>
-  <td class="cel-horario">${linhaHorarioHtml(data.linha,primeira,ultima)}</td>
-  <td>${selectVeiculo(data.veiculo||"")}</td>
-  <td><input class="inp-osm" value="${esc(data.osm||String(idx+1).padStart(3,"0"))}" placeholder="OSM"></td>
-  <td><select class="sel-status"><option ${status==="Ativo"?"selected":""}>Ativo</option><option ${status==="Folga"?"selected":""}>Folga</option></select></td>
-  <td><button class="btn-delete" onclick="removerMotorista(this)">🗑️</button></td>
- </tr>`;
+
+/* =====================================================
+   ESCALA ATUAL
+===================================================== */
+
+let escalaAtual = [];
+
+let historicoAtual = [];
+
+
+/* =====================================================
+   DATA ATUAL
+===================================================== */
+
+function dataHoje(){
+
+  const d = new Date();
+
+  return d.toISOString().split("T")[0];
+
 }
 
-function atualizarResumo(){
- const rows=[...document.querySelectorAll("#tbodyEscala tr[data-row]")];
- const veiculos=new Set(),linhas=new Set();let viagens=0;
- rows.forEach(r=>{
-  const l=r.querySelector(".sel-linha")?.value;
-  const v=r.querySelector(".sel-veiculo")?.value;
-  if(l)linhas.add(l);if(v)veiculos.add(v);
-  if(l && r.querySelector(".sel-status")?.value==="Ativo") viagens+=linhaInfo(l)?.viagens||0;
- });
- document.getElementById("nMotoristas").textContent=rows.length;
- document.getElementById("nVeiculos").textContent=veiculos.size;
- document.getElementById("nLinhas").textContent=linhas.size;
- document.getElementById("nViagens").textContent=viagens;
+
+function mesAtualTexto(){
+
+  const meses = [
+
+    "Janeiro",
+    "Fevereiro",
+    "Março",
+    "Abril",
+    "Maio",
+    "Junho",
+    "Julho",
+    "Agosto",
+    "Setembro",
+    "Outubro",
+    "Novembro",
+    "Dezembro"
+
+  ];
+
+  const d = new Date();
+
+  return meses[d.getMonth()] +
+    "/" +
+    d.getFullYear();
+
 }
 
-window.linhaMudou=function(sel){
- const tr=sel.closest("tr");const l=linhaInfo(sel.value);const cell=tr.querySelector(".cel-horario");
- cell.innerHTML=linhaHorarioHtml(sel.value,l?.primeira,l?.ultima);atualizarResumo();
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+function mostrarToast(texto,tipo="normal"){
+
+  const toast =
+    document.getElementById("toast");
+
+  toast.textContent = texto;
+
+  toast.className =
+    "toast";
+
+  if(tipo==="sucesso")
+    toast.classList.add("sucesso-toast");
+
+  if(tipo==="erro")
+    toast.classList.add("erro-toast");
+
+  toast.style.display="block";
+
+  setTimeout(()=>{
+
+    toast.style.display="none";
+
+  },3500);
+
+}
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+window.entrar = async function () {
+
+  const emailInput = document.getElementById("email");
+  const senhaInput = document.getElementById("senha");
+  const erro = document.getElementById("erro");
+
+  const email = emailInput ? emailInput.value.trim() : "";
+  const senha = senhaInput ? senhaInput.value : "";
+
+  if (erro) {
+    erro.style.display = "none";
+    erro.textContent = "";
+  }
+
+  if (!email || !senha) {
+    mostrarErro("Preencha o e-mail e a senha.");
+    return;
+  }
+
+  const botao = document.querySelector(
+    'button[onclick="entrar()"]'
+  );
+
+  if (botao) {
+    botao.disabled = true;
+    botao.textContent = "Entrando...";
+  }
+
+  try {
+
+    await signInWithEmailAndPassword(
+      auth,
+      email,
+      senha
+    );
+
+    const usuario = auth.currentUser;
+
+    if (usuario) {
+
+      localStorage.setItem(
+        "usuarioUid",
+        usuario.uid
+      );
+
+      localStorage.setItem(
+        "usuarioEmail",
+        usuario.email || ""
+      );
+
+      if (
+        usuario.email &&
+        usuario.email.toLowerCase() ===
+        "matheusaehenrique@gmail.com"
+      ) {
+
+        localStorage.setItem(
+          "tipoUsuario",
+          "admin"
+        );
+
+      } else {
+
+        localStorage.setItem(
+          "tipoUsuario",
+          "funcionario"
+        );
+      }
+
+      mostrarSucesso("Login realizado com sucesso!");
+
+      setTimeout(() => {
+        abrirDashboard(usuario);
+      }, 300);
+
+    }
+
+  } catch (error) {
+
+    console.error("Erro no login:", error);
+
+    let mensagem =
+      "Login ou senha incorretos.";
+
+    if (error.code === "auth/invalid-credential") {
+      mensagem =
+        "E-mail ou senha incorretos.";
+    }
+
+    if (error.code === "auth/user-not-found") {
+      mensagem =
+        "Usuário não encontrado.";
+    }
+
+    if (error.code === "auth/wrong-password") {
+      mensagem =
+        "Senha incorreta.";
+    }
+
+    if (error.code === "auth/invalid-email") {
+      mensagem =
+        "E-mail inválido.";
+    }
+
+    mostrarErro(mensagem);
+
+  } finally {
+
+    if (botao) {
+      botao.disabled = false;
+      botao.textContent = "Entrar";
+    }
+  }
 };
-window.veiculoMudou=function(sel){atualizarResumo();};
 
-window.removerMotorista=function(btn){
- const rows=document.querySelectorAll("#tbodyEscala tr");
- if(rows.length<=1){toast("A escala precisa ter pelo menos um motorista.");return}
- btn.closest("tr").remove();
- renumerar();atualizarResumo();
+
+/* =========================================================
+   ABRIR DASHBOARD
+========================================================= */
+
+function abrirDashboard(user) {
+
+  const login =
+    document.getElementById("areaLogin");
+
+  const dashboard =
+    document.getElementById("areaDashboard");
+
+  if (login) {
+    login.style.display = "none";
+  }
+
+  if (dashboard) {
+    dashboard.style.display = "block";
+  }
+
+  const nome =
+    document.getElementById("nomeUsuario");
+
+  if (nome) {
+    nome.textContent =
+      user.email || "Usuário";
+  }
+
+  criarPainelAdministrador();
+
+  atualizarInterfaceUsuario();
+}
+
+
+/* =========================================================
+   SAIR
+========================================================= */
+
+window.sair = async function () {
+
+  try {
+
+    await signOut(auth);
+
+    localStorage.removeItem("usuarioUid");
+    localStorage.removeItem("usuarioEmail");
+    localStorage.removeItem("tipoUsuario");
+
+    location.reload();
+
+  } catch (error) {
+
+    console.error("Erro ao sair:", error);
+
+  }
 };
-function renumerar(){document.querySelectorAll("#tbodyEscala tr").forEach((r,i)=>r.children[0].innerHTML=`<b>${String(i+1).padStart(2,"0")}</b>`);}
 
-window.adicionarMotoristaEscala=function(){
- const tbody=document.getElementById("tbodyEscala");
- const i=tbody.querySelectorAll("tr").length;
- tbody.insertAdjacentHTML("beforeend",novaLinha({},i));
- renumerar();atualizarResumo();
- document.querySelector("#tabelaArea").scrollIntoView({behavior:"smooth",block:"center"});
+
+/* =========================================================
+   AUTENTICAÇÃO AUTOMÁTICA
+========================================================= */
+
+onAuthStateChanged(auth, async (user) => {
+
+  const login =
+    document.getElementById("areaLogin");
+
+  const dashboard =
+    document.getElementById("areaDashboard");
+
+  if (user) {
+
+    localStorage.setItem(
+      "usuarioUid",
+      user.uid
+    );
+
+    localStorage.setItem(
+      "usuarioEmail",
+      user.email || ""
+    );
+
+    if (
+      user.email &&
+      user.email.toLowerCase() ===
+      "matheusaehenrique@gmail.com"
+    ) {
+
+      localStorage.setItem(
+        "tipoUsuario",
+        "admin"
+      );
+
+    } else {
+
+      localStorage.setItem(
+        "tipoUsuario",
+        "funcionario"
+      );
+    }
+
+    if (login) {
+      login.style.display = "none";
+    }
+
+    if (dashboard) {
+      dashboard.style.display = "block";
+    }
+
+    const nome =
+      document.getElementById("nomeUsuario");
+
+    if (nome) {
+      nome.textContent =
+        user.email || "Usuário";
+    }
+
+    criarPainelAdministrador();
+
+    atualizarInterfaceUsuario();
+
+  } else {
+
+    if (login) {
+      login.style.display = "block";
+    }
+
+    if (dashboard) {
+      dashboard.style.display = "none";
+    }
+
+  }
+
+});
+
+
+/* =========================================================
+   PAINEL DO ADMINISTRADOR
+========================================================= */
+
+function criarPainelAdministrador() {
+
+  const dashboard =
+    document.getElementById("areaDashboard");
+
+  if (!dashboard) return;
+
+  let painel =
+    document.getElementById("painelAdmin");
+
+  if (painel) return;
+
+  painel =
+    document.createElement("div");
+
+  painel.id = "painelAdmin";
+
+  painel.style.marginTop = "20px";
+
+  painel.innerHTML = `
+
+    <div style="
+      background:white;
+      border-radius:20px;
+      padding:22px;
+      box-shadow:0 5px 20px rgba(0,0,0,.08);
+    ">
+
+      <h2 style="
+        color:#4f20b7;
+        margin-bottom:8px;
+      ">
+        👑 Administração
+      </h2>
+
+      <p style="
+        color:#666;
+        margin-bottom:18px;
+      ">
+        Painel exclusivo dos administradores.
+      </p>
+
+      <button
+        onclick="abrirEscala()"
+        style="
+          width:100%;
+          padding:15px;
+          margin-bottom:10px;
+          border:0;
+          border-radius:12px;
+          background:linear-gradient(
+            135deg,
+            #7022df,
+            #345de9
+          );
+          color:white;
+          font-size:16px;
+          font-weight:bold;
+        "
+      >
+        📋 Alterar Escala
+      </button>
+
+      <button
+        onclick="abrirFuncionarios()"
+        style="
+          width:100%;
+          padding:15px;
+          margin-bottom:10px;
+          border:0;
+          border-radius:12px;
+          background:#1677ff;
+          color:white;
+          font-size:16px;
+          font-weight:bold;
+        "
+      >
+        👥 Funcionários
+      </button>
+
+      <button
+        onclick="abrirVeiculos()"
+        style="
+          width:100%;
+          padding:15px;
+          border:0;
+          border-radius:12px;
+          background:#198754;
+          color:white;
+          font-size:16px;
+          font-weight:bold;
+        "
+      >
+        🚌 Veículos
+      </button>
+
+    </div>
+  `;
+
+  dashboard.appendChild(painel);
+}
+
+
+/* =========================================================
+   CONTROLE DE ADMIN
+========================================================= */
+
+function atualizarInterfaceUsuario() {
+
+  const tipo =
+    localStorage.getItem("tipoUsuario");
+
+  const painel =
+    document.getElementById("painelAdmin");
+
+  if (!painel) return;
+
+  if (tipo === "admin") {
+
+    painel.style.display = "block";
+
+  } else {
+
+    painel.style.display = "none";
+
+  }
+}
+
+
+/* =========================================================
+   ALTERAR ESCALA
+========================================================= */
+
+window.abrirEscala = async function () {
+
+  if (
+    localStorage.getItem("tipoUsuario")
+    !== "admin"
+  ) {
+
+    mostrarErro(
+      "Somente administradores podem alterar a escala."
+    );
+
+    return;
+  }
+
+  if (
+    document.getElementById("modalEscala")
+  ) return;
+
+  const modal =
+    document.createElement("div");
+
+  modal.id = "modalEscala";
+
+  modal.style.cssText = `
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.70);
+    z-index:99999;
+    overflow-y:auto;
+    padding:10px;
+  `;
+
+  modal.innerHTML = `
+
+    <div style="
+      max-width:1100px;
+      margin:10px auto;
+      background:white;
+      border-radius:20px;
+      overflow:hidden;
+      box-shadow:0 10px 40px rgba(0,0,0,.35);
+    ">
+
+      <!-- CABEÇALHO -->
+
+      <div style="
+        background:linear-gradient(
+          135deg,
+          #304ffe,
+          #6331f5
+        );
+        color:white;
+        padding:25px;
+        position:relative;
+      ">
+
+        <button
+          onclick="fecharEscala()"
+          style="
+            position:absolute;
+            right:15px;
+            top:15px;
+            width:45px;
+            height:45px;
+            border:0;
+            border-radius:50%;
+            background:rgba(255,255,255,.2);
+            color:white;
+            font-size:25px;
+          "
+        >
+          ×
+        </button>
+
+        <h1 style="
+          margin:0;
+          font-size:28px;
+        ">
+          📋 Alterar Escala
+        </h1>
+
+        <p style="
+          margin:8px 0 0;
+        ">
+          Edite e salve a escala operacional da empresa
+        </p>
+
+      </div>
+
+
+      <!-- INFORMAÇÕES -->
+
+      <div style="
+        display:grid;
+        grid-template-columns:
+        repeat(auto-fit,minmax(200px,1fr));
+        gap:15px;
+        padding:20px;
+      ">
+
+        <div style="
+          padding:18px;
+          background:#f5f3ff;
+          border-radius:15px;
+        ">
+
+          <b>📅 Data da escala</b>
+
+          <input
+            id="dataEscala"
+            type="date"
+            value="${new Date()
+              .toISOString()
+              .split("T")[0]}"
+            style="
+              width:100%;
+              margin-top:10px;
+              padding:12px;
+              border:1px solid #ddd;
+              border-radius:10px;
+            "
+          >
+
+        </div>
+
+
+        <div style="
+          padding:18px;
+          background:#f5f3ff;
+          border-radius:15px;
+        ">
+
+          <b>📆 Mês de operação</b>
+
+          <select
+            id="mesEscala"
+            style="
+              width:100%;
+              margin-top:10px;
+              padding:12px;
+              border:1px solid #ddd;
+              border-radius:10px;
+            "
+          >
+
+            <option>
+              Setembro/2026
+            </option>
+
+            <option>
+              Outubro/2026
+            </option>
+
+            <option>
+              Novembro/2026
+            </option>
+
+            <option>
+              Dezembro/2026
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div style="
+          padding:18px;
+          background:#f5f3ff;
+          border-radius:15px;
+        ">
+
+          <b>🕐 Última alteração</b>
+
+          <p
+            id="ultimaAlteracao"
+            style="
+              margin-top:10px;
+              color:#555;
+            "
+          >
+            Agora — Administrador Geral
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- ESCALA -->
+
+      <div style="
+        padding:0 20px 20px;
+      ">
+
+        <div style="
+          background:#f8f9ff;
+          border-radius:15px;
+          padding:20px;
+        ">
+
+          <h2 style="
+            margin-top:0;
+            color:#172554;
+          ">
+            🚌 Escala de Motoristas
+          </h2>
+
+          <p style="
+            color:#666;
+            margin-bottom:15px;
+          ">
+            Selecione o motorista, linha e veículo para definir a escala.
+          </p>
+
+
+          <div style="
+            display:flex;
+            gap:10px;
+            flex-wrap:wrap;
+            margin-bottom:15px;
+          ">
+
+            <button
+              onclick="adicionarMotoristaEscala()"
+              style="
+                flex:1;
+                min-width:180px;
+                background:#6331f5;
+                color:white;
+                border:0;
+                border-radius:10px;
+                padding:14px;
+                font-weight:bold;
+              "
+            >
+              ➕ Adicionar Motorista
+            </button>
+
+
+            <button
+              onclick="importarEscala()"
+              style="
+                flex:1;
+                min-width:180px;
+                background:#1677ff;
+                color:white;
+                border:0;
+                border-radius:10px;
+                padding:14px;
+                font-weight:bold;
+              "
+            >
+              📤 Importar Escala
+            </button>
+
+
+            <button
+              onclick="salvarEscala()"
+              style="
+                flex:1;
+                min-width:180px;
+                background:#198754;
+                color:white;
+                border:0;
+                border-radius:10px;
+                padding:14px;
+                font-weight:bold;
+              "
+            >
+              💾 Salvar Escala
+            </button>
+
+          </div>
+
+
+          <!-- TABELA -->
+
+          <div style="
+            overflow-x:auto;
+            background:white;
+            border-radius:12px;
+            border:1px solid #ddd;
+          ">
+
+            <table
+              id="tabelaEscala"
+              style="
+                width:100%;
+                border-collapse:collapse;
+                min-width:850px;
+              "
+            >
+
+              <thead>
+
+                <tr style="
+                  background:#eef1ff;
+                  color:#172554;
+                ">
+
+                  <th style="padding:12px;">#</th>
+
+                  <th style="padding:12px;">
+                    Motorista
+                  </th>
+
+                  <th style="padding:12px;">
+                    Linha
+                  </th>
+
+                  <th style="padding:12px;">
+                    Horário da linha
+                  </th>
+
+                  <th style="padding:12px;">
+                    Veículo
+                  </th>
+
+                  <th style="padding:12px;">
+                    OSM
+                  </th>
+
+                  <th style="padding:12px;">
+                    Status
+                  </th>
+
+                  <th style="padding:12px;">
+                    Ações
+                  </th>
+
+                </tr>
+
+              </thead>
+
+              <tbody id="listaEscala"></tbody>
+
+            </table>
+
+          </div>
+
+
+          <div style="
+            margin-top:15px;
+            padding:15px;
+            background:#fff3df;
+            border:1px solid #ffd89b;
+            border-radius:12px;
+            color:#875600;
+          ">
+
+            ⚠️
+            <b>
+              O motorista só poderá registrar viagens dentro do horário de operação da linha.
+            </b>
+
+          </div>
+
+
+          <!-- RESUMO -->
+
+          <div style="
+            display:grid;
+            grid-template-columns:
+            repeat(auto-fit,minmax(160px,1fr));
+            gap:12px;
+            margin-top:15px;
+          ">
+
+            <div style="
+              background:#eef4ff;
+              padding:18px;
+              border-radius:15px;
+              text-align:center;
+            ">
+
+              <strong
+                id="resumoMotoristas"
+                style="
+                  display:block;
+                  font-size:27px;
+                  color:#173fc5;
+                "
+              >
+                0
+              </strong>
+
+              Motoristas
+
+            </div>
+
+
+            <div style="
+              background:#eef4ff;
+              padding:18px;
+              border-radius:15px;
+              text-align:center;
+            ">
+
+              <strong
+                id="resumoVeiculos"
+                style="
+                  display:block;
+                  font-size:27px;
+                  color:#173fc5;
+                "
+              >
+                0
+              </strong>
+
+              Veículos
+
+            </div>
+
+
+            <div style="
+              background:#eef4ff;
+              padding:18px;
+              border-radius:15px;
+              text-align:center;
+            ">
+
+              <strong
+                id="resumoLinhas"
+                style="
+                  display:block;
+                  font-size:27px;
+                  color:#173fc5;
+                "
+              >
+                0
+              </strong>
+
+              Linhas
+
+            </div>
+
+
+            <div style="
+              background:#eef4ff;
+              padding:18px;
+              border-radius:15px;
+              text-align:center;
+            ">
+
+              <strong
+                id="resumoViagens"
+                style="
+                  display:block;
+                  font-size:27px;
+                  color:#173fc5;
+                "
+              >
+                0
+              </strong>
+
+              Viagens/dia
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- RODAPÉ -->
+
+      <div style="
+        padding:20px;
+        background:#f5f7ff;
+        display:flex;
+        gap:10px;
+        flex-wrap:wrap;
+        justify-content:flex-end;
+      ">
+
+        <button
+          onclick="fecharEscala()"
+          style="
+            flex:1;
+            min-width:180px;
+            padding:14px;
+            border:1px solid #ccc;
+            background:white;
+            border-radius:10px;
+            font-weight:bold;
+          "
+        >
+          Cancelar
+        </button>
+
+
+        <button
+          onclick="salvarEscala()"
+          style="
+            flex:1;
+            min-width:180px;
+            padding:14px;
+            border:0;
+            background:#198754;
+            color:white;
+            border-radius:10px;
+            font-weight:bold;
+          "
+        >
+          💾 Salvar Escala
+        </button>
+
+      </div>
+
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+
+  carregarEscalaFirebase();
+
 };
 
-function coletarEscala(){
- return [...document.querySelectorAll("#tbodyEscala tr[data-row]")].map(r=>({
-  motorista:r.querySelector(".sel-motorista").value,
-  linha:r.querySelector(".sel-linha").value,
-  primeira:linhaInfo(r.querySelector(".sel-linha").value)?.primeira||"",
-  ultima:linhaInfo(r.querySelector(".sel-linha").value)?.ultima||"",
-  veiculo:r.querySelector(".sel-veiculo").value,
-  osm:r.querySelector(".inp-osm").value.trim(),
-  status:r.querySelector(".sel-status").value
- }));
+
+/* =========================================================
+   FECHAR ESCALA
+========================================================= */
+
+window.fecharEscala = function () {
+
+  const modal =
+    document.getElementById("modalEscala");
+
+  if (modal) {
+    modal.remove();
+  }
+
+};
+
+
+    /* =========================================================
+   MOTORISTAS
+========================================================= */
+
+const linhasDisponiveis = [
+
+  ["1946","TI Igarassu","04:30","23:40"],
+  ["1062","TI Abreu e Lima","05:00","22:50"],
+  ["1076","TI Pelópidas","04:50","23:15"],
+  ["1909","Nova Aurora","05:20","22:30"],
+  ["1917","Paulista","04:40","23:00"],
+  ["1911","TI Recife","05:00","22:40"],
+  ["1937","Nova Aurora","05:10","22:30"],
+  ["1940","TI Macaxeira","04:50","23:20"],
+  ["1941","TI Pelópidas","05:00","23:00"],
+  ["1905","TI Igarassu","04:40","22:50"]
+
+];
+
+
+const veiculosDisponiveis = [
+
+  ["1309","Apache VIP V"],
+  ["1470","Mascarello"],
+  ["1933","Apache VIP V"],
+  ["1807","Torino S"],
+  ["1720","Granvia"],
+  ["1937","Apache VIP V"],
+  ["1905","Torino S"],
+  ["629","Marcopolo G8"],
+  ["630","Marcopolo G8"],
+  ["631","Marcopolo G8"]
+
+];
+
+
+window.adicionarMotoristaEscala =
+function () {
+
+  const lista =
+    document.getElementById(
+      "listaEscala"
+    );
+
+  if (!lista) return;
+
+  const numero =
+    lista.children.length + 1;
+
+  const tr =
+    document.createElement("tr");
+
+  tr.innerHTML = `
+
+    <td style="
+      padding:10px;
+      text-align:center;
+    ">
+      ${String(numero).padStart(2,"0")}
+    </td>
+
+
+    <td style="padding:10px;">
+
+      <select
+        class="motoristaSelect"
+        style="
+          width:100%;
+          padding:10px;
+          border:1px solid #ddd;
+          border-radius:8px;
+        "
+      >
+
+        <option>
+          Motorista ${String(numero).padStart(2,"0")}
+        </option>
+
+        ${Array.from(
+          {length:25},
+          (_,i) =>
+          `<option>
+            Motorista ${String(i+1).padStart(2,"0")}
+          </option>`
+        ).join("")}
+
+      </select>
+
+    </td>
+
+
+    <td style="padding:10px;">
+
+      <select
+        class="linhaSelect"
+        onchange="atualizarHorarioLinha(this)"
+        style="
+          width:100%;
+          padding:10px;
+          border:1px solid #ddd;
+          border-radius:8px;
+        "
+      >
+
+        <option value="">
+          Selecionar linha
+        </option>
+
+        ${linhasDisponiveis.map(
+          l =>
+          `<option
+            value="${l[0]}"
+            data-inicio="${l[2]}"
+            data-fim="${l[3]}"
+          >
+            ${l[0]} - ${l[1]}
+          </option>`
+        ).join("")}
+
+      </select>
+
+    </td>
+
+
+    <td style="
+      padding:10px;
+      text-align:center;
+    ">
+
+      <div class="horarioLinha"
+        style="
+          background:#f2efff;
+          padding:10px;
+          border-radius:10px;
+        "
+      >
+        <b>☀️ --:--</b>
+        <br>
+        <small>🌙 --:--</small>
+        <br>
+        <span style="
+          color:#198754;
+          font-size:12px;
+        ">
+          Intervalo válido
+        </span>
+      </div>
+
+    </td>
+
+
+    <td style="padding:10px;">
+
+      <select
+        class="veiculoSelect"
+        style="
+          width:100%;
+          padding:10px;
+          border:1px solid #ddd;
+          border-radius:8px;
+        "
+      >
+
+        <option value="">
+          Selecionar veículo
+        </option>
+
+        ${veiculosDisponiveis.map(
+          v =>
+          `<option value="${v[0]}">
+            ${v[0]} - ${v[1]}
+          </option>`
+        ).join("")}
+
+      </select>
+
+    </td>
+
+
+    <td style="padding:10px;">
+
+      <input
+        class="osmInput"
+        value="${String(numero).padStart(3,"0")}"
+        style="
+          width:70px;
+          padding:10px;
+          border:1px solid #ddd;
+          border-radius:8px;
+        "
+      >
+
+    </td>
+
+
+    <td style="padding:10px;text-align:center;">
+
+      <span class="statusEscala"
+        style="
+          display:inline-block;
+          padding:9px 12px;
+          border-radius:10px;
+          background:#dff7e8;
+          color:#16733c;
+          white-space:nowrap;
+        "
+      >
+        🟢 Ativo
+      </span>
+
+    </td>
+
+
+    <td style="
+      padding:10px;
+      text-align:center;
+    ">
+
+      <button
+        onclick="excluirMotorista(this)"
+        style="
+          border:0;
+          background:#ffe1e1;
+          color:#e22;
+          padding:10px;
+          border-radius:8px;
+          font-size:18px;
+        "
+      >
+        🗑️
+      </button>
+
+    </td>
+
+  `;
+
+  lista.appendChild(tr);
+
+  atualizarResumo();
+
+};
+
+
+/* =========================================================
+   HORÁRIO DA LINHA
+========================================================= */
+
+window.atualizarHorarioLinha =
+function (select) {
+
+  const tr =
+    select.closest("tr");
+
+  if (!tr) return;
+
+  const option =
+    select.options[
+      select.selectedIndex
+    ];
+
+  const inicio =
+    option.dataset.inicio || "--:--";
+
+  const fim =
+    option.dataset.fim || "--:--";
+
+  const horario =
+    tr.querySelector(
+      ".horarioLinha"
+    );
+
+  if (!horario) return;
+
+  horario.innerHTML = `
+
+    <b>
+      ☀️ ${inicio}
+    </b>
+
+    <br>
+
+    <small>
+      🌙 ${fim}
+    </small>
+
+    <br>
+
+    <span style="
+      color:#198754;
+      font-size:12px;
+    ">
+      Intervalo válido
+    </span>
+
+    <br>
+
+    <span>
+      ${inicio} — ${fim}
+    </span>
+
+  `;
+
+};
+
+/* =========================================================
+   EXCLUIR MOTORISTA
+========================================================= */
+
+window.excluirMotorista =
+function (botao) {
+
+  const tr =
+    botao.closest("tr");
+
+  if (!tr) return;
+
+  tr.remove();
+
+  renumerar();
+
+  atualizarResumo();
+
+};
+
+
+/* =========================================================
+   RENUMERAR
+========================================================= */
+
+function renumerar() {
+
+  const linhas =
+    document.querySelectorAll(
+      "#listaEscala tr"
+    );
+
+  linhas.forEach(
+    (tr,index) => {
+
+      const numero =
+        tr.querySelector(
+          "td:first-child"
+        );
+
+      if (numero) {
+
+        numero.textContent =
+          String(index+1)
+          .padStart(2,"0");
+
+      }
+
+    }
+  );
+
 }
 
-async function carregarHistorico(){
- const box=document.getElementById("historicoLista");if(!box)return;
- try{
-  const q=query(collection(db,"escalas","operacao","historico"),orderBy("criadoEm","desc"),limit(3));
-  const snap=await getDocs(q);
-  if(snap.empty){box.innerHTML=`<div class="sem-dados">Nenhuma alteração registrada ainda.</div>`;return}
-  box.innerHTML=snap.docs.map(d=>{
-   const x=d.data();const data=x.criadoEm?.toDate?x.criadoEm.toDate():null;
-   const texto=data?data.toLocaleString("pt-BR",{dateStyle:"short",timeStyle:"short"}):"Agora";
-   return `<div class="hist-item"><span>${texto}</span><b>Escala atualizada</b></div>`;
-  }).join("");
- }catch(e){box.innerHTML=`<div class="sem-dados">Histórico disponível após configurar as regras do Firestore.</div>`;}
+
+/* =========================================================
+   RESUMO
+========================================================= */
+
+function atualizarResumo() {
+
+  const linhas =
+    document.querySelectorAll(
+      "#listaEscala tr"
+    );
+
+  const motoristas =
+    document.getElementById(
+      "resumoMotoristas"
+    );
+
+  const veiculos =
+    document.getElementById(
+      "resumoVeiculos"
+    );
+
+  const linhasResumo =
+    document.getElementById(
+      "resumoLinhas"
+    );
+
+  const viagens =
+    document.getElementById(
+      "resumoViagens"
+    );
+
+  if (motoristas) {
+    motoristas.textContent =
+      linhas.length;
+  }
+
+  const veiculosUsados =
+    new Set();
+
+  const linhasUsadas =
+    new Set();
+
+  let viagensTotal = 0;
+
+  linhas.forEach(tr => {
+
+    const v =
+      tr.querySelector(
+        ".veiculoSelect"
+      );
+
+    const l =
+      tr.querySelector(
+        ".linhaSelect"
+      );
+
+    if (v && v.value) {
+      veiculosUsados.add(v.value);
+    }
+
+    if (l && l.value) {
+      linhasUsadas.add(l.value);
+    }
+
+    if (l && l.value) {
+      viagensTotal++;
+    }
+
+  });
+
+  if (veiculos) {
+    veiculos.textContent =
+      veiculosUsados.size;
+  }
+
+  if (linhasResumo) {
+    linhasResumo.textContent =
+      linhasUsadas.size;
+  }
+
+  if (viagens) {
+    viagens.textContent =
+      viagensTotal;
+  }
+
 }
 
-async function carregarEscalaSalva(){
- try{
-  const ref=doc(db,"escalas","operacao");
-  const snap=await getDoc(ref);
-  if(!snap.exists())return null;
-  return snap.data();
- }catch(e){console.warn("Não foi possível carregar escala:",e);return null}
+
+/* =========================================================
+   SALVAR ESCALA NO FIREBASE
+========================================================= */
+
+window.salvarEscala =
+async function () {
+
+  if (
+    localStorage.getItem("tipoUsuario")
+    !== "admin"
+  ) {
+
+    mostrarErro(
+      "Somente administradores podem salvar a escala."
+    );
+
+    return;
+  }
+
+  const lista =
+    document.querySelectorAll(
+      "#listaEscala tr"
+    );
+
+  const escala = [];
+
+  lista.forEach(tr => {
+
+    const motorista =
+      tr.querySelector(
+        ".motoristaSelect"
+      );
+
+    const linha =
+      tr.querySelector(
+        ".linhaSelect"
+      );
+
+    const veiculo =
+      tr.querySelector(
+        ".veiculoSelect"
+      );
+
+    const osm =
+      tr.querySelector(
+        ".osmInput"
+      );
+
+    if (!motorista) return;
+
+    escala.push({
+
+      motorista:
+        motorista.value,
+
+      linha:
+        linha ? linha.value : "",
+
+      veiculo:
+        veiculo ? veiculo.value : "",
+
+      osm:
+        osm ? osm.value : "",
+
+      salvoEm:
+        new Date().toISOString()
+
+    });
+
+  });
+
+
+  try {
+
+    const referencia =
+      doc(
+        db,
+        "escalas",
+        "operacao"
+      );
+
+    await setDoc(
+      referencia,
+      {
+
+        escala: escala,
+
+        data:
+          document.getElementById(
+            "dataEscala"
+          )?.value || "",
+
+        mes:
+          document.getElementById(
+            "mesEscala"
+          )?.value || "",
+
+        alteradoEm:
+          new Date().toISOString(),
+
+        alteradoPor:
+          localStorage.getItem(
+            "usuarioEmail"
+          ) || ""
+
+      },
+      {
+        merge:true
+      }
+    );
+
+
+    mostrarSucesso(
+      "Escala salva com sucesso no Firebase!"
+    );
+
+
+    const ultima =
+      document.getElementById(
+        "ultimaAlteracao"
+      );
+
+    if (ultima) {
+
+      ultima.textContent =
+        new Date().toLocaleString(
+          "pt-BR"
+        ) +
+        " — Administrador Geral";
+
+    }
+
+
+  } catch (error) {
+
+    console.error(
+      "Erro ao salvar escala:",
+      error
+    );
+
+    mostrarErro(
+      "Não foi possível salvar a escala no Firebase."
+    );
+
+  }
+
+};
+
+
+/* =========================================================
+   CARREGAR ESCALA
+========================================================= */
+
+async function carregarEscalaFirebase() {
+
+  try {
+
+    const referencia =
+      doc(
+        db,
+        "escalas",
+        "operacao"
+      );
+
+    const resultado =
+      await getDoc(
+        referencia
+      );
+
+    if (
+      !resultado.exists()
+    ) {
+
+      for (
+        let i = 0;
+        i < 5;
+        i++
+      ) {
+
+        adicionarMotoristaEscala();
+
+      }
+
+      return;
+    }
+
+
+    const dados =
+      resultado.data();
+
+    const lista =
+      document.getElementById(
+        "listaEscala"
+      );
+
+    if (!lista) return;
+
+    lista.innerHTML = "";
+
+
+    if (
+      dados.escala &&
+      Array.isArray(
+        dados.escala
+      )
+    ) {
+
+      dados.escala.forEach(
+        item => {
+
+          adicionarMotoristaEscala();
+
+          const tr =
+            lista.lastElementChild;
+
+          if (!tr) return;
+
+          const motorista =
+            tr.querySelector(
+              ".motoristaSelect"
+            );
+
+          const linha =
+            tr.querySelector(
+              ".linhaSelect"
+            );
+
+          const veiculo =
+            tr.querySelector(
+              ".veiculoSelect"
+            );
+
+          const osm =
+            tr.querySelector(
+              ".osmInput"
+            );
+
+
+          if (motorista)
+            motorista.value =
+              item.motorista || "";
+
+
+          if (linha) {
+
+            linha.value =
+              item.linha || "";
+
+            atualizarHorarioLinha(
+              linha
+            );
+
+          }
+
+
+          if (veiculo)
+            veiculo.value =
+              item.veiculo || "";
+
+
+          if (osm)
+            osm.value =
+              item.osm || "";
+
+        }
+      );
+
+    }
+
+
+    if (
+      dados.data &&
+      document.getElementById(
+        "dataEscala"
+      )
+    ) {
+
+      document.getElementById(
+        "dataEscala"
+      ).value =
+        dados.data;
+
+    }
+
+
+    if (
+      dados.mes &&
+      document.getElementById(
+        "mesEscala"
+      )
+    ) {
+
+      document.getElementById(
+        "mesEscala"
+      ).value =
+        dados.mes;
+
+    }
+
+
+    if (
+      dados.alteradoEm
+    ) {
+
+      const ultima =
+        document.getElementById(
+          "ultimaAlteracao"
+        );
+
+      if (ultima) {
+
+        ultima.textContent =
+          new Date(
+            dados.alteradoEm
+          ).toLocaleString(
+            "pt-BR"
+          );
+
+      }
+
+    }
+
+
+    atualizarResumo();
+
+  } catch (error) {
+
+    console.error(
+      "Erro ao carregar escala:",
+      error
+    );
+
+    for (
+      let i = 0;
+      i < 5;
+      i++
+    ) {
+
+      adicionarMotoristaEscala();
+
+    }
+
+  }
+
 }
 
-window.abrirEscala=async function(){
- if(!auth.currentUser || !ADMIN_EMAILS.includes((auth.currentUser.email||"").toLowerCase())){
-  toast("Apenas administradores podem alterar a escala.");return;
- }
- if(document.getElementById("modalEscala"))return;
- const salva=await carregarEscalaSalva();
- const rows=(salva?.motoristas?.length?salva.motoristas:Array.from({length:5},(_,i)=>({
-  motorista:MOTORISTAS[i],linha:LINHAS[i%LINHAS.length].codigo,veiculo:VEICULOS[i].numero,osm:String(i+1).padStart(3,"0"),status:i===4?"Folga":"Ativo"
- })));
- const dataEscala=salva?.dataEscala||hoje(),mes=salva?.mesOperacao||mesAtual();
 
- const modal=document.createElement("div");modal.id="modalEscala";
- modal.innerHTML=`<div class="escala-box">
-  <div class="escala-head">
-   <button class="fechar" onclick="fecharEscala()">×</button>
-   <h1>📋 Alterar Escala</h1>
-   <p>Edite e salve a escala operacional da empresa</p>
-  </div>
 
-  <div class="info-grid">
-   <div class="info-card"><b>📅 Data da escala</b><input id="dataEscala" type="date" value="${esc(dataEscala)}"></div>
-   <div class="info
+/* =========================================================
+   IMPORTAR ESCALA
+========================================================= */
+
+window.importarEscala =
+function () {
+
+  mostrarSucesso(
+    "A escala atual do Firebase será carregada automaticamente."
+  );
+
+  carregarEscalaFirebase();
+
+};
+
+
+/* =========================================================
+   FUNCIONÁRIOS
+========================================================= */
+
+window.abrirFuncionarios =
+function () {
+
+  alert(
+    "Área de funcionários preparada para receber o cadastro dos motoristas."
+  );
+
+};
+
+
+/* =========================================================
+   VEÍCULOS
+========================================================= */
+
+window.abrirVeiculos =
+function () {
+
+  alert(
+    "Área de veículos preparada para receber o cadastro da frota."
+  );
+
+};
+
+
+/* =========================================================
+   MENSAGENS
+========================================================= */
+
+function mostrarErro(texto) {
+
+  const erro =
+    document.getElementById(
+      "erro"
+    );
+
+  if (!erro) {
+
+    alert(texto);
+    return;
+
+  }
+
+  erro.textContent =
+    texto;
+
+  erro.style.display =
+    "block";
+
+}
+
+
+function mostrarSucesso(texto) {
+
+  const sucesso =
+    document.getElementById(
+      "sucesso"
+    );
+
+  if (sucesso) {
+
+    sucesso.textContent =
+      texto;
+
+    sucesso.style.display =
+      "block";
+
+    setTimeout(() => {
+
+      sucesso.style.display =
+        "none";
+
+    },3500);
+
+  } else {
+
+    console.log(texto);
+
+  }
+
+}
+
+
+/* =========================================================
+   ENTER NO LOGIN
+========================================================= */
+
+document.addEventListener(
+  "keydown",
+  function(event) {
+
+    if (
+      event.key === "Enter"
+    ) {
+
+      const login =
+        document.getElementById(
+          "areaLogin"
+        );
+
+      if (
+        login &&
+        login.style.display !== "none"
+      ) {
+
+        entrar();
+
+      }
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   INÍCIO
+========================================================= */
+
+console.log(
+  "MobiBrasil PE Virtual iniciado."
+);
+
+ </script>
+
+</body>
+</html>
