@@ -624,13 +624,204 @@ button:disabled{
   }
 
 }
+/* ================================
+   PAINEL DO MOTORISTA
+================================ */
 
+#painelMotorista {
+    display: none;
+    background: #f5f3ff;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.motorista-header {
+    background: linear-gradient(135deg, #5b21f5, #2563eb);
+    color: white;
+    padding: 22px;
+    border-radius: 22px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 6px 18px rgba(0,0,0,.15);
+}
+
+.motorista-avatar {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: white;
+    color: #4f46e5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+}
+
+.motorista-header h2 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.motorista-header p {
+    margin: 5px 0 0;
+    opacity: .9;
+}
+
+.menu-motorista {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.menu-card {
+    background: white;
+    border-radius: 20px;
+    padding: 22px 15px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,.08);
+    border: none;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.menu-card:active {
+    transform: scale(.96);
+}
+
+.menu-card .icone {
+    font-size: 34px;
+    margin-bottom: 8px;
+}
+
+.menu-card h3 {
+    margin: 0;
+    color: #1e2a5a;
+    font-size: 17px;
+}
+
+.menu-card p {
+    margin: 6px 0 0;
+    color: #777;
+    font-size: 13px;
+}
+
+.menu-card.escala {
+    border-top: 5px solid #5b21f5;
+}
+
+.menu-card.veiculo {
+    border-top: 5px solid #2563eb;
+}
+
+.menu-card.viagens {
+    border-top: 5px solid #16a34a;
+}
+
+.menu-card.aviso {
+    border-top: 5px solid #f59e0b;
+}
+
+.menu-card.perfil {
+    border-top: 5px solid #ec4899;
+}
+
+.menu-card.sair {
+    border-top: 5px solid #dc2626;
+}
+
+.tela-motorista {
+    display: none;
+    background: white;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,.08);
+}
+
+.tela-motorista h2 {
+    color: #1e2a5a;
+    margin-top: 0;
+}
+
+.voltar-motorista {
+    background: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 18px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    }
 </style>
 </head>
 
 
 <body>
+<!-- =========================
+     PAINEL DO MOTORISTA
+========================= -->
 
+<section id="painelMotorista" class="painel-motorista">
+
+    <div class="motorista-header">
+        <div class="motorista-avatar">🧑‍✈️</div>
+
+        <div>
+            <h2>Painel do Motorista</h2>
+            <p id="nomeMotorista">Bem-vindo, Motorista</p>
+        </div>
+    </div>
+
+    <div class="menu-motorista">
+
+        <button onclick="abrirMenuMotorista('escala')">
+            📋
+            <strong>Minha Escala</strong>
+            <span>Veja sua escala de trabalho</span>
+        </button>
+
+        <button onclick="abrirMenuMotorista('veiculo')">
+            🚌
+            <strong>Meu Veículo</strong>
+            <span>Consulte o veículo escalado</span>
+        </button>
+
+        <button onclick="abrirMenuMotorista('viagens')">
+            🔄
+            <strong>Minhas Viagens</strong>
+            <span>Registre e acompanhe suas viagens</span>
+        </button>
+
+        <button onclick="abrirMenuMotorista('vistoria')">
+            🔧
+            <strong>Vistoria</strong>
+            <span>Faça a vistoria do veículo</span>
+        </button>
+
+        <button onclick="abrirMenuMotorista('osm')">
+            📄
+            <strong>OSM</strong>
+            <span>Consulte sua ordem de serviço</span>
+        </button>
+
+        <button onclick="abrirMenuMotorista('historico')">
+            📊
+            <strong>Meu Histórico</strong>
+            <span>Veja seus registros anteriores</span>
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ÁREA ONDE OS MENUS SERÃO ABERTOS -->
+
+<div id="areaMotorista"></div>
 
 <header class="topo">
 
@@ -3236,7 +3427,629 @@ document.addEventListener(
 console.log(
   "MobiBrasil PE Virtual iniciado."
 );
+/* ============================================================
+   MOBIBRASIL PE VIRTUAL
+   MENU COMPLETO DO MOTORISTA
+   ============================================================ */
 
+document.addEventListener("DOMContentLoaded", function () {
+
+    const menu = document.querySelector(".menu-motorista");
+
+    if (!menu) {
+        console.log("Menu do motorista não encontrado.");
+        return;
+    }
+
+    /* ========================================================
+       ESTILO DO MENU
+       ======================================================== */
+
+    const estilo = document.createElement("style");
+
+    estilo.textContent = `
+    
+    .menu-motorista {
+        display:flex;
+        flex-direction:column;
+        gap:14px;
+        margin-top:25px;
+    }
+
+    .botao-motorista {
+        width:100%;
+        border:none;
+        border-radius:18px;
+        padding:18px;
+        background:white;
+        box-shadow:0 4px 15px rgba(0,0,0,.10);
+        display:flex;
+        align-items:center;
+        gap:15px;
+        text-align:left;
+        cursor:pointer;
+        transition:.2s;
+    }
+
+    .botao-motorista:active {
+        transform:scale(.97);
+    }
+
+    .icone-motorista {
+        width:52px;
+        height:52px;
+        border-radius:15px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-size:25px;
+        background:#eee;
+    }
+
+    .texto-motorista {
+        display:flex;
+        flex-direction:column;
+        gap:4px;
+    }
+
+    .texto-motorista strong {
+        font-size:17px;
+        color:#172937;
+    }
+
+    .texto-motorista span {
+        font-size:13px;
+        color:#777;
+    }
+
+    .janela-motorista {
+        position:fixed;
+        inset:0;
+        background:rgba(0,0,0,.55);
+        display:none;
+        align-items:flex-end;
+        justify-content:center;
+        z-index:99999;
+    }
+
+    .janela-motorista.ativa {
+        display:flex;
+    }
+
+    .conteudo-motorista {
+        width:100%;
+        max-width:600px;
+        max-height:88vh;
+        overflow-y:auto;
+        background:#fff;
+        border-radius:25px 25px 0 0;
+        padding:22px;
+        animation:subirMotorista .25s ease;
+    }
+
+    @keyframes subirMotorista {
+        from {
+            transform:translateY(100%);
+        }
+        to {
+            transform:translateY(0);
+        }
+    }
+
+    .topo-motorista {
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        margin-bottom:20px;
+    }
+
+    .topo-motorista h2 {
+        margin:0;
+        color:#172937;
+    }
+
+    .fechar-motorista {
+        width:42px;
+        height:42px;
+        border:none;
+        border-radius:50%;
+        background:#eee;
+        font-size:22px;
+        cursor:pointer;
+    }
+
+    .card-info-motorista {
+        background:#f5f6fa;
+        border-radius:16px;
+        padding:16px;
+        margin-bottom:12px;
+    }
+
+    .card-info-motorista strong {
+        display:block;
+        color:#172937;
+        margin-bottom:5px;
+    }
+
+    .acao-motorista {
+        width:100%;
+        border:none;
+        border-radius:13px;
+        padding:14px;
+        margin-top:10px;
+        background:#24116b;
+        color:white;
+        font-size:15px;
+        font-weight:bold;
+        cursor:pointer;
+    }
+
+    .status-motorista {
+        display:inline-block;
+        padding:7px 12px;
+        border-radius:20px;
+        background:#dff7e8;
+        color:#168344;
+        font-size:13px;
+        font-weight:bold;
+    }
+
+    `;
+
+    document.head.appendChild(estilo);
+
+
+    /* ========================================================
+       BOTÕES
+       ======================================================== */
+
+    menu.innerHTML = `
+
+        <button class="botao-motorista" onclick="abrirTelaMotorista('escala')">
+            <div class="icone-motorista">📋</div>
+            <div class="texto-motorista">
+                <strong>Minha Escala</strong>
+                <span>Veja sua escala de trabalho</span>
+            </div>
+        </button>
+
+        <button class="botao-motorista" onclick="abrirTelaMotorista('veiculo')">
+            <div class="icone-motorista">🚌</div>
+            <div class="texto-motorista">
+                <strong>Meu Veículo</strong>
+                <span>Consulte o veículo escalado</span>
+            </div>
+        </button>
+
+        <button class="botao-motorista" onclick="abrirTelaMotorista('viagens')">
+            <div class="icone-motorista">🔄</div>
+            <div class="texto-motorista">
+                <strong>Minhas Viagens</strong>
+                <span>Registre e acompanhe suas viagens</span>
+            </div>
+        </button>
+
+        <button class="botao-motorista" onclick="abrirTelaMotorista('vistoria')">
+            <div class="icone-motorista">🔧</div>
+            <div class="texto-motorista">
+                <strong>Vistoria</strong>
+                <span>Faça a vistoria do veículo</span>
+            </div>
+        </button>
+
+        <button class="botao-motorista" onclick="abrirTelaMotorista('osm')">
+            <div class="icone-motorista">📄</div>
+            <div class="texto-motorista">
+                <strong>OSM</strong>
+                <span>Consulte sua ordem de serviço</span>
+            </div>
+        </button>
+
+        <button class="botao-motorista" onclick="abrirTelaMotorista('avisos')">
+            <div class="icone-motorista">🔔</div>
+            <div class="texto-motorista">
+                <strong>Avisos</strong>
+                <span>Veja os avisos da operação</span>
+            </div>
+        </button>
+
+        <button class="botao-motorista" onclick="abrirTelaMotorista('perfil')">
+            <div class="icone-motorista">👤</div>
+            <div class="texto-motorista">
+                <strong>Meu Perfil</strong>
+                <span>Consulte seus dados</span>
+            </div>
+        </button>
+
+        <button class="botao-motorista" onclick="sairPainelMotorista()">
+            <div class="icone-motorista">🚪</div>
+            <div class="texto-motorista">
+                <strong>Sair</strong>
+                <span>Sair do painel do motorista</span>
+            </div>
+        </button>
+
+    `;
+
+
+    /* ========================================================
+       JANELA
+       ======================================================== */
+
+    const janela = document.createElement("div");
+
+    janela.id = "janelaMotorista";
+
+    janela.className = "janela-motorista";
+
+    janela.innerHTML = `
+        <div class="conteudo-motorista">
+
+            <div class="topo-motorista">
+
+                <h2 id="tituloTelaMotorista">
+                    Painel do Motorista
+                </h2>
+
+                <button
+                    class="fechar-motorista"
+                    onclick="fecharTelaMotorista()">
+                    ×
+                </button>
+
+            </div>
+
+            <div id="corpoTelaMotorista"></div>
+
+        </div>
+    `;
+
+    document.body.appendChild(janela);
+
+
+    /* ========================================================
+       ABRIR TELAS
+       ======================================================== */
+
+    window.abrirTelaMotorista = function(tipo) {
+
+        const titulo =
+            document.getElementById("tituloTelaMotorista");
+
+        const corpo =
+            document.getElementById("corpoTelaMotorista");
+
+        janela.classList.add("ativa");
+
+        if (tipo === "escala") {
+
+            titulo.innerText = "📋 Minha Escala";
+
+            corpo.innerHTML = `
+
+                <div class="card-info-motorista">
+                    <strong>Data</strong>
+                    <span>Consulte sua escala atual</span>
+                </div>
+
+                <div class="card-info-motorista">
+                    <strong>Motorista</strong>
+                    <span id="motoristaEscala">
+                        Motorista logado
+                    </span>
+                </div>
+
+                <div class="card-info-motorista">
+                    <strong>Linha</strong>
+                    <span id="linhaEscala">
+                        Aguardando escala
+                    </span>
+                </div>
+
+                <div class="card-info-motorista">
+                    <strong>Veículo</strong>
+                    <span id="veiculoEscala">
+                        Aguardando escala
+                    </span>
+                </div>
+
+                <div class="card-info-motorista">
+                    <strong>Horário</strong>
+                    <span id="horarioEscala">
+                        Aguardando escala
+                    </span>
+                </div>
+
+            `;
+
+        }
+
+
+        else if (tipo === "veiculo") {
+
+            titulo.innerText = "🚌 Meu Veículo";
+
+            corpo.innerHTML = `
+
+                <div class="card-info-motorista">
+                    <strong>Veículo escalado</strong>
+                    <span>Aguardando dados da escala</span>
+                </div>
+
+                <div class="card-info-motorista">
+                    <strong>Modelo</strong>
+                    <span>Não informado</span>
+                </div>
+
+                <div class="card-info-motorista">
+                    <strong>Chassi</strong>
+                    <span>Não informado</span>
+                </div>
+
+                <div class="card-info-motorista">
+                    <strong>Ar-condicionado</strong>
+                    <span class="status-motorista">
+                        Consultar escala
+                    </span>
+                </div>
+
+            `;
+
+        }
+
+
+        else if (tipo === "viagens") {
+
+            titulo.innerText = "🔄 Minhas Viagens";
+
+            corpo.innerHTML = `
+
+                <div class="card-info-motorista">
+                    <strong>Viagens realizadas hoje</strong>
+                    <span id="viagensHojeMotorista">0</span>
+                </div>
+
+                <div class="card-info-motorista">
+                    <strong>Viagens no mês</strong>
+                    <span id="viagensMesMotorista">0</span>
+                </div>
+
+                <button
+                    class="acao-motorista"
+                    onclick="registrarViagemMotorista()">
+                    ➕ Registrar Viagem
+                </button>
+
+            `;
+
+        }
+
+
+        else if (tipo === "vistoria") {
+
+            titulo.innerText = "🔧 Vistoria";
+
+            corpo.innerHTML = `
+
+                <div class="card-info-motorista">
+                    <strong>Vistoria do veículo</strong>
+                    <span>
+                        Faça a conferência antes de iniciar a operação.
+                    </span>
+                </div>
+
+                <button
+                    class="acao-motorista"
+                    onclick="iniciarVistoriaMotorista()">
+                    🔧 Iniciar Vistoria
+                </button>
+
+            `;
+
+        }
+
+
+        else if (tipo === "osm") {
+
+            titulo.innerText = "📄 Ordem de Serviço";
+
+            corpo.innerHTML = `
+
+                <div class="card-info-motorista">
+                    <strong>OSM</strong>
+                    <span>
+                        Consulte a ordem de serviço vinculada à sua escala.
+                    </span>
+                </div>
+
+                <div class="card-info-motorista">
+                    <strong>Status</strong>
+                    <span class="status-motorista">
+                        Aguardando escala
+                    </span>
+                </div>
+
+            `;
+
+        }
+
+
+        else if (tipo === "avisos") {
+
+            titulo.innerText = "🔔 Avisos";
+
+            corpo.innerHTML = `
+
+                <div class="card-info-motorista">
+                    <strong>📢 Avisos da operação</strong>
+                    <span>
+                        Nenhum aviso novo no momento.
+                    </span>
+                </div>
+
+            `;
+
+        }
+
+
+        else if (tipo === "perfil") {
+
+            titulo.innerText = "👤 Meu Perfil";
+
+            corpo.innerHTML = `
+
+                <div class="card-info-motorista">
+                    <strong>Nome</strong>
+                    <span id="perfilMotorista">
+                        Motorista
+                    </span>
+                </div>
+
+                <div class="card-info-motorista">
+                    <strong>Tipo de acesso</strong>
+                    <span>
+                        Motorista
+                    </span>
+                </div>
+
+                <div class="card-info-motorista">
+                    <strong>Status</strong>
+                    <span class="status-motorista">
+                        Ativo
+                    </span>
+                </div>
+
+            `;
+
+            carregarNomeMotorista();
+
+        }
+
+    };
+
+
+    /* ========================================================
+       FECHAR
+       ======================================================== */
+
+    window.fecharTelaMotorista = function() {
+
+        janela.classList.remove("ativa");
+
+    };
+
+
+    /* ========================================================
+       REGISTRAR VIAGEM
+       ======================================================== */
+
+    window.registrarViagemMotorista = function() {
+
+        if (typeof registrarViagem === "function") {
+
+            registrarViagem();
+
+        } else {
+
+            alert("A função de registrar viagem ainda não está disponível.");
+
+        }
+
+    };
+
+
+    /* ========================================================
+       VISTORIA
+       ======================================================== */
+
+    window.iniciarVistoriaMotorista = function() {
+
+        alert(
+            "🔧 VISTORIA\n\n" +
+            "Aqui será realizada a vistoria do veículo."
+        );
+
+    };
+
+
+    /* ========================================================
+       NOME DO MOTORISTA
+       ======================================================== */
+
+    window.carregarNomeMotorista = function() {
+
+        const campo =
+            document.getElementById("perfilMotorista");
+
+        if (!campo) return;
+
+        try {
+
+            const usuario =
+                localStorage.getItem("usuarioNome");
+
+            if (usuario) {
+
+                campo.innerText = usuario;
+
+            }
+
+        } catch (erro) {
+
+            console.log("Nome do motorista não encontrado.");
+
+        }
+
+    };
+
+
+    /* ========================================================
+       SAIR
+       ======================================================== */
+
+    window.sairPainelMotorista = function() {
+
+        if (
+            confirm(
+                "Deseja realmente sair do painel do motorista?"
+            )
+        ) {
+
+            if (
+                typeof signOut === "function" &&
+                typeof auth !== "undefined"
+            ) {
+
+                signOut(auth);
+
+            } else {
+
+                localStorage.removeItem("usuarioUid");
+
+                location.reload();
+
+            }
+
+        }
+
+    };
+
+
+    /* ========================================================
+       FECHAR CLICANDO FORA
+       ======================================================== */
+
+    janela.addEventListener("click", function(event) {
+
+        if (event.target === janela) {
+
+            fecharTelaMotorista();
+
+        }
+
+    });
+
+});
  </script>
 
 </body>
