@@ -778,10 +778,10 @@ button:disabled{
 
     <div class="menu-motorista">
 
-        <button onclick="abrirPainelMotorista()"
-            📋
-            <strong>Minha Escala</strong>
-            <span>Veja sua escala de trabalho</span>
+        <button class="menu-card escala" onclick="abrirPainelMotorista()">
+    📋
+    <strong>Minha Escala</strong>
+    <span>Veja sua escala de trabalho</span>
         </button>
 
         <button onclick="abrirMenuMotorista('veiculo')">
@@ -1788,25 +1788,35 @@ onAuthStateChanged(auth, async (user) => {
 
     const tipoUsuario = localStorage.getItem("tipoUsuario");
 
+const tipoUsuario = localStorage.getItem("tipoUsuario");
+
+const painelAdmin = document.getElementById("painelAdmin");
+const painelMotorista = document.getElementById("painelMotorista");
+const dashboard = document.getElementById("areaDashboard");
+
+if (dashboard) {
+    dashboard.style.display = "none";
+}
+
+if (painelAdmin) {
+    painelAdmin.style.display = "none";
+}
+
+if (painelMotorista) {
+    painelMotorista.style.display = "none";
+}
+
 if (tipoUsuario === "admin") {
 
-    if (dashboard) {
-        dashboard.style.display = "block";
-    }
-
-    const painelMotorista = document.getElementById("painelMotorista");
-
-    if (painelMotorista) {
-        painelMotorista.style.display = "none";
+    if (painelAdmin) {
+        painelAdmin.style.display = "block";
+        painelAdmin.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
     }
 
 } else {
-
-    if (dashboard) {
-        dashboard.style.display = "none";
-    }
-
-    const painelMotorista = document.getElementById("painelMotorista");
 
     if (painelMotorista) {
         painelMotorista.style.display = "block";
@@ -1815,6 +1825,7 @@ if (tipoUsuario === "admin") {
             block: "start"
         });
     }
+
   }
 
     const nome =
