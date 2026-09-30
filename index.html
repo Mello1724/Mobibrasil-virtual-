@@ -4050,6 +4050,29 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 });
+function abrirPainelMotorista() {
+
+    const dashboard = document.getElementById("dashboard");
+    if (dashboard) {
+        dashboard.style.display = "none";
+    }
+
+    const painelAdmin = document.getElementById("painelAdministrador");
+    if (painelAdmin) {
+        painelAdmin.style.display = "none";
+    }
+
+    const painelMotorista = document.getElementById("painelMotorista");
+    if (painelMotorista) {
+        painelMotorista.style.display = "block";
+
+        painelMotorista.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    }
+  }
+  
  </script>
 
 </body>
