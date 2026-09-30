@@ -4057,11 +4057,21 @@ function abrirPainelMotorista() {
         dashboard.style.display = "none";
     }
 
+    function abrirPainelMotorista() {
+
+    // Mantém o dashboard principal ativo
+    const dashboard = document.getElementById("dashboard");
+    if (dashboard) {
+        dashboard.style.display = "block";
+    }
+
+    // Esconde o painel administrativo
     const painelAdmin = document.getElementById("painelAdministrador");
     if (painelAdmin) {
         painelAdmin.style.display = "none";
     }
 
+    // Abre o painel do motorista
     const painelMotorista = document.getElementById("painelMotorista");
     if (painelMotorista) {
         painelMotorista.style.display = "block";
